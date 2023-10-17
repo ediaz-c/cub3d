@@ -6,7 +6,7 @@
 /*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:04:38 by erick             #+#    #+#             */
-/*   Updated: 2023/10/17 15:19:20 by erick            ###   ########.fr       */
+/*   Updated: 2023/10/17 17:28:38 by erick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ int	ft_check_format(char *path, t_cube *cube)
 	last = last_index(sp_path);
 	ext = ft_strrchr(sp_path[last], '.');
 	if (ext == NULL)
-		return(free_split(sp_path), 0);
+		return (free_split(sp_path), 0);
 	while (ext[i])
 	{
 		if (ext[i] != format[i])
-			return(free_split(sp_path), 0);
+			return (free_split(sp_path), 0);
 		i++;
 	}
 	cube->path = path;

@@ -6,7 +6,7 @@
 /*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 12:22:41 by erick             #+#    #+#             */
-/*   Updated: 2023/10/17 15:31:15 by erick            ###   ########.fr       */
+/*   Updated: 2023/10/17 17:35:16 by erick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	free_split(char **split);
 int	ft_check_format(char *path, t_cube *cube);
 // Map
 int	ft_get_map(t_cube *cube);
+int	ft_check_map(t_cube *cube);
 /*ERROR*/
 int	ft_exiterror(char *str);
 #endif

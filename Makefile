@@ -8,7 +8,7 @@ LIBFT		=	libs/libft/libft.a
 
 #SRC
 ERROR		=	put_error.c
-ARGUMENT	=	check_argument.c get_map.c
+ARGUMENT	=	check_argument.c get_map.c check_map.c
 FREE		=	free_str.c
 MAIN		=	main.c
 
@@ -22,16 +22,20 @@ OBJS		=	$(SRC_DIR:.c=.o)
 all:	$(NAME)
 
 $(NAME):	$(OBJS)	$(LIBFT)
-	$(CC) $(CFLAGS) $(LIBFT) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(LIBFT) $(OBJS) -o $(NAME)
 
 $(LIBFT):
-	make -C libs/libft
+	@make -C libs/libft
 
 clean:
-	$(RM) $(OBJS)
+	@for obj in $(OBJS); do \
+		$(RM) $$obj; \
+		echo "Eliminado $$obj"; \
+	done
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
+	@echo "Eliminado " $(NAME)
 
 re: fclean all
 
