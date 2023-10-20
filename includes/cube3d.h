@@ -6,7 +6,7 @@
 /*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 12:22:41 by erick             #+#    #+#             */
-/*   Updated: 2023/10/17 17:35:16 by erick            ###   ########.fr       */
+/*   Updated: 2023/10/19 23:10:12 by erick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,42 @@
 # include <stdio.h>
 # include <fcntl.h>
 
+# define CHARS_MAP	" 01NSEW"
+# define CHARS_P	"NSEW"
+
 typedef struct	s_cube
 {
 	char	*path;
+	char	*no;
+	char	*so;
+	char	*ea;
+	char	*we;
+	char	*f;
+	char	*c;
 	char	**map;
+	int		first_line;
 } t_cube;
 
-/*FREE*/
+/***** FREE *****/
+/* free_str.c */
 void	free_split(char **split);
-/*MAP*/
+/* free_cube.c */
+void	ft_free_cube(t_cube *cube);
+
+/***** MAP *****/
 // Argument
 int	ft_check_format(char *path, t_cube *cube);
-// Map
-int	ft_get_map(t_cube *cube);
+/* get_cub.c */
+void	ft_get_cube(t_cube *cube);
 int	ft_check_map(t_cube *cube);
-/*ERROR*/
+
+/***** ERROR *****/
 int	ft_exiterror(char *str);
+
+/***** UTILS *****/
+/* create_cube.c */
+t_cube	*create_cube(t_cube **cube);
+int	ft_search_elements(t_cube *cube, char *id, char *path);
+int	ft_line_empty(char	*line);
+char	**ft_fd_map(int fd);
 #endif
