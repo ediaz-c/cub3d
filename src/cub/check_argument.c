@@ -6,11 +6,11 @@
 /*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:04:38 by erick             #+#    #+#             */
-/*   Updated: 2023/10/19 16:12:07 by erick            ###   ########.fr       */
+/*   Updated: 2023/10/22 01:13:54 by erick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube3d.h"
+#include "../../includes/cub3d.h"
 
 static int	last_index(char	**path)
 {

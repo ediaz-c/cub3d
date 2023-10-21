@@ -6,11 +6,11 @@
 /*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:28:30 by erick             #+#    #+#             */
-/*   Updated: 2023/10/21 23:41:17 by erick            ###   ########.fr       */
+/*   Updated: 2023/10/22 01:13:54 by erick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube3d.h"
+#include "../../includes/cub3d.h"
 
 int	ft_get_file(t_cube *cube)
 {

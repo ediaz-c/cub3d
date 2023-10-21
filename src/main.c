@@ -6,11 +6,11 @@
 /*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 12:22:25 by erick             #+#    #+#             */
-/*   Updated: 2023/10/21 15:01:04 by erick            ###   ########.fr       */
+/*   Updated: 2023/10/22 01:15:00 by erick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube3d.h"
+#include "../includes/cub3d.h"
 
 void	leaks(void)
 {
@@ -29,8 +29,6 @@ int	main(int ac, char *av[])
 	if (ft_check_format(av[1], cube) == 0)
 		exit(ft_exiterror(BRED"Invalid extension"COLOR_OFF));
 	ft_get_cube(cube);
-	// if (ft_check_map(&cube) == 0)
-	// 	exit(ft_exiterror(BRED"Invalid map"COLOR_OFF));
 	for (int i = 0; cube->file[i]; i++)
 		printf("%s\n", cube->file[i]);
 	ft_free_cube(cube);

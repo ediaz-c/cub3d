@@ -6,11 +6,11 @@
 /*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:15:09 by erick             #+#    #+#             */
-/*   Updated: 2023/10/17 14:42:57 by erick            ###   ########.fr       */
+/*   Updated: 2023/10/22 01:13:54 by erick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube3d.h"
+#include "../../includes/cub3d.h"
 
 void	free_split(char **split)
 {

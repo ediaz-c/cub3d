@@ -6,11 +6,11 @@
 /*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 12:47:59 by erick             #+#    #+#             */
-/*   Updated: 2023/10/21 22:35:39 by erick            ###   ########.fr       */
+/*   Updated: 2023/10/22 01:13:54 by erick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube3d.h"
+#include "../../includes/cub3d.h"
 
 char	**ft_cpy_matrix(char **matrix, char ***cpy_ptr)
 {
