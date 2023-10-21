@@ -6,7 +6,7 @@
 /*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 12:22:41 by erick             #+#    #+#             */
-/*   Updated: 2023/10/19 23:10:12 by erick            ###   ########.fr       */
+/*   Updated: 2023/10/21 14:07:34 by erick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,32 @@
 # define CHARS_MAP	" 01NSEW"
 # define CHARS_P	"NSEW"
 
-typedef struct	s_cube
+typedef struct s_cube
 {
-	char	*path;
-	char	*no;
-	char	*so;
-	char	*ea;
-	char	*we;
-	char	*f;
-	char	*c;
-	char	**map;
-	int		first_line;
-} t_cube;
+	char			*path;
+	char			*no;
+	char			*so;
+	char			*ea;
+	char			*we;
+	char			*f;
+	char			*c;
+	char			**file;
+	char			**map;
+	int				first_line;
+	struct s_player	*p;
+}	t_cube;
+
+typedef struct s_player
+{
+	float	x;
+	float	y;
+	char	dir;
+}	t_player;
+
+typedef struct s_mlx
+{
+	void	*mlx;
+}	t_mlx;
 
 /***** FREE *****/
 /* free_str.c */
@@ -41,18 +55,27 @@ void	ft_free_cube(t_cube *cube);
 
 /***** MAP *****/
 // Argument
-int	ft_check_format(char *path, t_cube *cube);
+int		ft_check_format(char *path, t_cube *cube);
+/* check_map.c */
+int	ft_check_chars(char **map);
+void	ft_find_player(t_player *player, char **map);
+int	ft_check_borders(t_player *p, char **map);
 /* get_cub.c */
 void	ft_get_cube(t_cube *cube);
-int	ft_check_map(t_cube *cube);
+int		ft_check_map(t_cube *cube);
 
 /***** ERROR *****/
-int	ft_exiterror(char *str);
+int		ft_exiterror(char *str);
+int		ft_exiterror_cube(char *str, t_cube *cube);
 
 /***** UTILS *****/
 /* create_cube.c */
 t_cube	*create_cube(t_cube **cube);
-int	ft_search_elements(t_cube *cube, char *id, char *path);
-int	ft_line_empty(char	*line);
+int		ft_search_elements(t_cube *cube, char *id, char *path);
+int		ft_line_empty(char	*line);
 char	**ft_fd_map(int fd);
+/* check_map_utils.c */
+char	**ft_cpy_matrix(char **matrix, char ***cpy_ptr);
+int	ft_check_horizontal(char *line);
+
 #endif

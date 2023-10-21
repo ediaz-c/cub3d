@@ -6,7 +6,7 @@
 /*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 12:22:25 by erick             #+#    #+#             */
-/*   Updated: 2023/10/20 10:31:18 by erick            ###   ########.fr       */
+/*   Updated: 2023/10/21 12:17:54 by erick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ int	main(int ac, char *av[])
 
 	atexit(leaks);
 	if (ac != 2)
-		exit(ft_exiterror(BRed"Invalids arguments"Color_off));
+		exit(ft_exiterror(BRED"Invalids arguments"COLOR_OFF));
 	if (create_cube(&cube) == NULL)
 		exit(1);
 	if (ft_check_format(av[1], cube) == 0)
-		exit(ft_exiterror(BRed"Invalid extension"Color_off));
+		exit(ft_exiterror(BRED"Invalid extension"COLOR_OFF));
 	ft_get_cube(cube);
 	// if (ft_check_map(&cube) == 0)
-	// 	exit(ft_exiterror(BRed"Invalid map"Color_off));
-	for (int i = 0; cube->map[i]; i++)
-		printf("%s\n", cube->map[i]);
+	// 	exit(ft_exiterror(BRED"Invalid map"COLOR_OFF));
+	for (int i = 0; cube->file[i]; i++)
+		printf("%s\n", cube->file[i]);
 	ft_free_cube(cube);
 }

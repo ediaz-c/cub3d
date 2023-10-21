@@ -10,7 +10,7 @@ LIBFT		=	libs/libft/libft.a
 ERROR		=	put_error.c
 ARGUMENT	=	check_argument.c get_cub.c check_map.c
 FREE		=	free_str.c free_cube.c
-UTILS		=	create_cube.c color_str.c
+UTILS		=	create_cube.c check_map_utils.c
 MAIN		=	main.c
 
 #OBJS
