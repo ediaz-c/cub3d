@@ -6,7 +6,7 @@
 /*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 12:22:41 by erick             #+#    #+#             */
-/*   Updated: 2023/10/21 14:07:34 by erick            ###   ########.fr       */
+/*   Updated: 2023/10/21 23:24:16 by erick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_cube
 	char			*c;
 	char			**file;
 	char			**map;
+	int				crgb;
+	int				frgb;
 	int				first_line;
 	struct s_player	*p;
 }	t_cube;
@@ -76,6 +78,14 @@ int		ft_line_empty(char	*line);
 char	**ft_fd_map(int fd);
 /* check_map_utils.c */
 char	**ft_cpy_matrix(char **matrix, char ***cpy_ptr);
-int	ft_check_horizontal(char *line);
-
+int	ft_check_horizontal(char *line, int r, char **map);
+int	ft_check_rest_rows(char **map, int row);
+/* check_row.c */
+int	ft_left_up(char **map, int r);
+int	ft_left_down(char **map, int r);
+int	ft_right_up(char **map, int r);
+int	ft_right_down(char **map, int r);
+int	ft_check_spaces(int x, int y, char **map);
+/* get_cub_utils.c */
+int	ft_get_colors(t_cube *cube);
 #endif
