@@ -6,7 +6,7 @@
 /*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:28:30 by erick             #+#    #+#             */
-/*   Updated: 2023/10/22 01:13:54 by erick            ###   ########.fr       */
+/*   Updated: 2023/10/22 20:54:02 by erick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,6 @@ void	ft_get_cube(t_cube *cube)
 		exit(ft_exiterror_cube(BRED"Error getting map"COLOR_OFF, cube));
 	if (ft_check_map(cube) == 0)
 		exit(ft_exiterror_cube(BRED"Map invalid"COLOR_OFF, cube));
+	cube->win_height = 1220;
+	cube->win_width = 780;
 }

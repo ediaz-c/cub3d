@@ -6,7 +6,7 @@
 /*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 17:33:17 by erick             #+#    #+#             */
-/*   Updated: 2023/10/22 01:13:54 by erick            ###   ########.fr       */
+/*   Updated: 2023/10/22 19:25:45 by erick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,32 +62,12 @@ void	ft_find_player(t_player *player, char **map)
 			{
 				player->y = y;
 				player->x = x;
-				player->dir = map[y][x];
+				ft_check_dir(player, map[y][x]);
 				break ;
 			}
 		}
 	}
 }
-
-// int	ft_all_close(int p_x, int p_y, char **map)
-// {
-// 	map[p_y][p_x] = ' ';
-// 	if (ft_check_around(p_y, p_x, map) == 0)
-// 		return (0);
-// 	if (p_y - 1 >= 0 && map[p_y - 1][p_x] == '0')
-// 		if (ft_all_close(p_x, p_y - 1, map) == 0)
-// 			return (0);
-// 	if (map[p_y + 1] && map[p_y + 1][p_x] == '0')
-// 		if (ft_all_close(p_x, p_y + 1, map) == 0)
-// 			return (0);
-// 	if (p_x - 1 >= 0 && map[p_y][p_x - 1] == '0')
-// 		if (ft_all_close(p_x - 1, p_y, map) == 0)
-// 			return (0);
-// 	if (map[p_y][p_x + 1] && map[p_y][p_x + 1] == '0')
-// 		if (ft_all_close(p_x + 1, p_y, map) == 0)
-// 			return (0);
-// 	return (1);
-// }
 
 int	ft_check_borders(t_player *p, char **map)
 {
@@ -98,8 +78,6 @@ int	ft_check_borders(t_player *p, char **map)
 	(void)p;
 	if (ft_cpy_matrix(map, &map_cpy) == NULL)
 		return (0);
-	// if (ft_all_close((int)p->x, (int)p->y, map_cpy) == 0)
-	// 	return (0);
 	while (map_cpy[i])
 	{
 		if (i == 0 || map_cpy[i + 1] == NULL)

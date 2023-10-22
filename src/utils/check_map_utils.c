@@ -6,7 +6,7 @@
 /*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 12:47:59 by erick             #+#    #+#             */
-/*   Updated: 2023/10/22 01:13:54 by erick            ###   ########.fr       */
+/*   Updated: 2023/10/22 19:37:21 by erick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,20 @@ int	ft_check_rest_rows(char **map, int row)
 	if (ft_right_down(map, row) == 0)
 		return (0);
 	return (1);
+}
+
+void	ft_check_dir(t_player *player, char dir)
+{
+	player->dir_x = 0;
+	player->dir_y = 0;
+	player->plane_x = 0;
+	player->plane_y = 0.66;
+	if (dir == 'N')
+		player->dir_y++;
+	else if (dir == 'S')
+		player->dir_y--;
+	else if (dir == 'E')
+		player->dir_x++;
+	else if (dir == 'W')
+		player->dir_x--;
 }
