@@ -24,40 +24,92 @@
 
 typedef struct s_cube
 {
-	char			*path;
-	char			*no;
-	char			*so;
-	char			*ea;
-	char			*we;
+	char				*path;
+	char				*no;
+	char				*so;
+	char				*ea;
+	char				*we;
+	char				*f;
+	char				*c;
+	char				**file;
+	char				**map;
+	int					crgb;
+	int					frgb;
+	int					first_line;
+	int					win_height;
+	int					win_width;
+	int					redraw;
+	struct s_player		*p;
+	struct s_mlx		*mlx;
+	struct s_texture	*txt;
+}	t_cube;
+
+
+typedef struct	s_img
+{
+	char	*path;
+	void	*img;
+	int		width;
+	int		height;
+}	t_img;
+
+typedef struct	s_texture
+{
+	struct s_img	*no;
+	struct s_img	*so;
+	struct s_img	*ea;
+	struct s_img	*we;
 	char			*f;
 	char			*c;
-	char			**file;
-	char			**map;
-	int				crgb;
-	int				frgb;
-	int				first_line;
-	int				win_height;
-	int				win_width;
-	struct s_player	*p;
-	struct s_mlx	*mlx;
-}	t_cube;
+}	t_texture;
 
 typedef struct s_player
 {
 	double	x;
 	double	y;
-	double	camerax;
 	double	dir_x;
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
-	double	raydir_x;
-	double	raydir_y;
+}	t_player;
+
+typedef struct s_dda
+{
+	int		win_width;
+	int		win_height;
+	double	camerax;
+	double	plane_x;
+	double	plane_y;
+	double	raydirx;
+	double	raydiry;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
 	double	sdist_x;
 	double	sdist_y;
 	double	ddist_x;
 	double	ddist_y;
-}	t_player;
+	double	perpWallDist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		map_x;
+	int		map_y;
+	char	**map;
+}	t_dda;
+
+typedef struct	s_line
+{
+	int	x;
+	int	height;
+	int	y;
+	int	y0;
+	int	y1;
+	int	tex_x;
+	int	tex_y;
+}	t_line;
 
 typedef struct s_mlx
 {
@@ -109,4 +161,16 @@ void	ft_check_dir(t_player *player, char dir);
 /***** GAME*****/
 /* init.c */
 void	init_game(t_cube *cube);
+/* dda.c */
+void	ft_init_dda(t_dda *dda, t_cube *cube);
+void	ft_first_op(t_dda *dda, int x);
+void	ft_calculate_side_dist(t_dda *dda);
+void	ft_calculate_dda(t_dda *dda, char **map);
+
+/* textures.c */
+int	ft_init_textures(t_cube *cube);
+
+/* ceiling_floor.c */
+void	ft_floor(t_cube *cube);
+void	ft_ceiling(t_cube *cube);
 #endif

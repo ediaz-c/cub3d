@@ -14,7 +14,7 @@ ERROR		=	put_error.c
 ARGUMENT	=	check_argument.c get_cub.c check_map.c
 FREE		=	free_str.c free_cube.c
 UTILS		=	create_cube.c check_map_utils.c check_row.c get_cub_utils.c
-GAME		=	init.c
+GAME		=	init.c dda.c textures.c ceiling_floor.c
 MAIN		=	main.c
 
 #OBJS

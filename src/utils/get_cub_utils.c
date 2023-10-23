@@ -6,7 +6,7 @@
 /*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 23:16:07 by erick             #+#    #+#             */
-/*   Updated: 2023/10/22 01:13:54 by erick            ###   ########.fr       */
+/*   Updated: 2023/10/23 16:58:59 by erick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,41 @@ static int	split_digit(char **color)
 	return (1);
 }
 
+static int	ft_octal_color(int rgb)
+{
+	int	r;
+	int	g;
+	int	b;
+	int	re;
+	char	*red;
+	char	*green;
+	char	*blue;
+	char	*tmp;
+	char	*result;
+
+	r = (rgb >> 16) & 0xFF;
+	g = (rgb >> 8) & 0xFF;
+	b = rgb & 0xFF;
+	red = ft_itoa(r);
+	green = ft_itoa(g);
+	blue = ft_itoa(b);
+	tmp = ft_strjoin(red, green);
+	result = ft_strjoin(tmp, blue);
+	free(red);
+	free(green);
+	free(blue);
+	free(tmp);
+	re = ft_atoi(result);
+	free(result);
+	return (re);
+}
+
 static int	get_color(char **color)
 {
 	char	*result;
 	char	*tmp;
 	int		rgb;
+	int		finish;
 
 	tmp = ft_strjoin(color[0], color[1]);
 	result = ft_strjoin(tmp, color[2]);
@@ -51,7 +81,8 @@ static int	get_color(char **color)
 	free(tmp);
 	rgb = ft_atoi(result);
 	free(result);
-	return (rgb);
+	finish = ft_octal_color(rgb);
+	return (finish);
 }
 
 int	ft_get_colors(t_cube *cube)
