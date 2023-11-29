@@ -1,6 +1,6 @@
 NAME		=	cub3D
 CC			=	gcc
-CFLAGS		=	-g3 #-Wall -Werror -Wextra
+CFLAGS		=	#-g3 -fsanitize=address #-Wall -Werror -Wextra
 RM			=	rm -rf
 
 #LIBS
@@ -11,11 +11,12 @@ MLX			=	-L$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 
 #SRC
 ERROR		=	put_error.c
-ARGUMENT	=	check_argument.c get_cub.c check_map.c
-FREE		=	free_str.c free_cube.c
-UTILS		=	create_cube.c check_map_utils.c check_row.c get_cub_utils.c
-GAME		=	init.c dda.c textures.c ceiling_floor.c
 MAIN		=	main.c
+ARGUMENT	=	check_argument.c get_cub.c check_map.c map_utils.c
+FREE		=	free_str.c free_cube.c
+GAME		=	init.c textures.c close.c loop.c raycast.c handler_key.c player.c move.c rotate.c handler_mouse.c
+MINI		=	minimap.c player_minimap.c
+UTILS		=	create_cube.c check_map_utils.c check_row.c get_cub_utils.c pos.c raycast_utils.c
 
 #OBJS
 ERROR_DIR	=	$(addprefix error/, $(ERROR))
@@ -23,7 +24,8 @@ ARG_DIR		=	$(addprefix cub/, $(ARGUMENT))
 FREE_DIR	=	$(addprefix free/, $(FREE))
 UTILS_DIR	=	$(addprefix utils/, $(UTILS))
 GAME_DIR	=	$(addprefix game/, $(GAME))
-SRC_DIR		=	$(addprefix src/, $(ERROR_DIR) $(ARG_DIR) $(FREE_DIR) $(UTILS_DIR) $(MAIN) $(GAME_DIR))
+MINI_DIR	=	$(addprefix minimap/, $(MINI))
+SRC_DIR		=	$(addprefix src/, $(ERROR_DIR) $(ARG_DIR) $(FREE_DIR) $(UTILS_DIR) $(MAIN) $(GAME_DIR) $(MINI_DIR))
 
 OBJS		=	$(SRC_DIR:.c=.o)
 

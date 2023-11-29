@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cub.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:28:30 by erick             #+#    #+#             */
-/*   Updated: 2023/10/23 16:13:42 by erick            ###   ########.fr       */
+/*   Updated: 2023/11/29 20:04:39 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_get_file(t_cube *cube)
 	if (fd < 0)
 		exit(ft_exiterror(BRED"Path error"COLOR_OFF));
 	
-	cube->file = ft_fd_map(fd);
+	cube->file = ft_fd_map(cube->path, fd);
 	if (cube->file == NULL)
 		return (close(fd), 0);
 	return (close(fd), 1);
@@ -37,6 +37,11 @@ int	ft_get_elements(t_cube *cube)
 		info = ft_split(cube->file[i], ' ');
 		if (info == NULL)
 			return (free_split(info), 0);
+		if (info[0] == NULL)
+		{
+			free_split(info);
+			continue ;
+		}
 		if (ft_search_elements(cube, info[0], info[1]) == 0)
 			break ;
 		free_split(info);
@@ -74,12 +79,13 @@ int	ft_get_map(t_cube *cube)
 
 int	ft_check_map(t_cube *cube)
 {
-	if (ft_check_chars(cube->map) == 0)
-		return (0);
+	ft_fill_map(cube->map);
+	if (ft_check_chars(cube->map) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	ft_find_player(cube->p, cube->map);
-	if (ft_check_borders(cube->p, cube->map) == 0)
-		return (0);
-	return (1);
+	if (ft_check_borders(cube->p, cube->map) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 void	ft_get_cube(t_cube *cube)
@@ -88,12 +94,14 @@ void	ft_get_cube(t_cube *cube)
 		exit(ft_exiterror_cube(BRED"Error getting the file"COLOR_OFF, cube));
 	if (ft_get_elements(cube) == 0)
 		exit(ft_exiterror_cube(BRED"Error getting elements"COLOR_OFF, cube));
-	if (ft_get_colors(cube) == 0)
+	if (ft_get_colors(cube))
 		exit(ft_exiterror_cube(BRED"Error checking colors"COLOR_OFF, cube));
 	if (ft_get_map(cube) == 0)
 		exit(ft_exiterror_cube(BRED"Error getting map"COLOR_OFF, cube));
-	if (ft_check_map(cube) == 0)
+	if (ft_check_map(cube))
 		exit(ft_exiterror_cube(BRED"Map invalid"COLOR_OFF, cube));
-	cube->win_height = 780;
-	cube->win_width = 1220;
+	ft_change_chars(cube->map, cube->p);
+	ft_size_map(cube);
+	ft_init_player(cube);
+	cube->run = 1;
 }

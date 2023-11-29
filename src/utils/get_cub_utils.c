@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cub_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 23:16:07 by erick             #+#    #+#             */
-/*   Updated: 2023/10/23 16:58:59 by erick            ###   ########.fr       */
+/*   Updated: 2023/11/27 17:49:11 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,72 +19,39 @@ static int	split_digit(char **color)
 
 	i = -1;
 	if (color == NULL)
-		return (0);
+		return (EXIT_FAILURE);
 	while (color[++i])
 	{
 		j = -1;
 		while (color[i][++j])
 		{
 			if (!ft_isdigit(color[i][j]))
-				return (0);
+				return (EXIT_FAILURE);
 		}
 		if (ft_atoi(color[i]) < 0 || ft_atoi(color[i]) > 255)
-		{
-			return (0);
-		}
+			return (EXIT_FAILURE);
 	}
 	if (i != 3)
-		return (0);
-	return (1);
-}
-
-static int	ft_octal_color(int rgb)
-{
-	int	r;
-	int	g;
-	int	b;
-	int	re;
-	char	*red;
-	char	*green;
-	char	*blue;
-	char	*tmp;
-	char	*result;
-
-	r = (rgb >> 16) & 0xFF;
-	g = (rgb >> 8) & 0xFF;
-	b = rgb & 0xFF;
-	red = ft_itoa(r);
-	green = ft_itoa(g);
-	blue = ft_itoa(b);
-	tmp = ft_strjoin(red, green);
-	result = ft_strjoin(tmp, blue);
-	free(red);
-	free(green);
-	free(blue);
-	free(tmp);
-	re = ft_atoi(result);
-	free(result);
-	return (re);
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 static int	get_color(char **color)
 {
-	char	*result;
-	char	*tmp;
-	int		rgb;
-	int		finish;
+	int	t;
+	int	r;
+	int	g;
+	int	b;
 
-	tmp = ft_strjoin(color[0], color[1]);
-	result = ft_strjoin(tmp, color[2]);
-	if (result == NULL)
+	t = 0;
+	r = ft_atoi(color[0]);
+	g = ft_atoi(color[1]);
+	b = ft_atoi(color[2]);
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		return (-1);
-	free(tmp);
-	rgb = ft_atoi(result);
-	free(result);
-	finish = ft_octal_color(rgb);
-	return (finish);
+	return (0x0 | r << 16 | g << 8 | b);
 }
-
+/* ARREGLAR OCTAL */
 int	ft_get_colors(t_cube *cube)
 {
 	char	**ceiling;
@@ -98,15 +65,15 @@ int	ft_get_colors(t_cube *cube)
 			free_split(ceiling);
 		if (floor)
 			free_split(floor);
-		return (0);
+		return (EXIT_FAILURE);
 	}
-	if (split_digit(ceiling) == 0 || split_digit(floor) == 0)
-		return (free_split(ceiling), free_split(floor), 0);
-	cube->crgb = get_color(ceiling);
-	cube->frgb = get_color(floor);
-	if (cube->crgb == -1 || cube->frgb == -1)
-		return (free_split(ceiling), free_split(floor), 0);
+	if (split_digit(ceiling) == 1 || split_digit(floor) == 1)
+		return (free_split(ceiling), free_split(floor), EXIT_FAILURE);
+	cube->octal_c = get_color(ceiling);
+	cube->octal_f = get_color(floor);
 	free_split(ceiling);
 	free_split(floor);
-	return (1);
+	if (cube->octal_c == -1 || cube->octal_f == -1)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }

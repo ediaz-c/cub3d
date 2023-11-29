@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_argument.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:04:38 by erick             #+#    #+#             */
-/*   Updated: 2023/10/22 01:13:54 by erick            ###   ########.fr       */
+/*   Updated: 2023/11/27 17:11:24 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,18 @@ int	ft_check_format(char *path, t_cube *cube)
 	format = ".cub";
 	sp_path = ft_split(path, '/');
 	if (sp_path == NULL)
-		return (0);
+		return (EXIT_FAILURE);
 	last = last_index(sp_path);
 	ext = ft_strrchr(sp_path[last], '.');
 	if (ext == NULL)
-		return (free_split(sp_path), 0);
+		return (free_split(sp_path), EXIT_FAILURE);
 	while (ext[i])
 	{
 		if (ext[i] != format[i])
-			return (free_split(sp_path), 0);
+			return (free_split(sp_path), EXIT_FAILURE);
 		i++;
 	}
 	cube->path = path;
 	free_split(sp_path);
-	return (1);
+	return (EXIT_SUCCESS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 12:47:59 by erick             #+#    #+#             */
-/*   Updated: 2023/10/22 19:37:21 by erick            ###   ########.fr       */
+/*   Updated: 2023/11/29 17:22:58 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ char	**ft_cpy_matrix(char **matrix, char ***cpy_ptr)
 		return (NULL);
 	i = -1;
 	while (matrix[++i])
+	{
 		(*cpy_ptr)[i] = ft_strdup(matrix[i]);
+		if ((*cpy_ptr)[i] == NULL)
+			exit(ft_exiterror(BRED"Malloc error"COLOR_OFF));
+	}
 	(*cpy_ptr)[i] = 0;
 	return (*cpy_ptr);
 }
@@ -67,16 +71,28 @@ int	ft_check_rest_rows(char **map, int row)
 
 void	ft_check_dir(t_player *player, char dir)
 {
-	player->dir_x = 0;
-	player->dir_y = 0;
-	player->plane_x = 0;
-	player->plane_y = 0.66;
+	set_pos(&player->dir, 0, 0);
+	set_pos(&player->plane, 0, 0.66);
 	if (dir == 'N')
-		player->dir_y++;
+		player->dir.y--;
 	else if (dir == 'S')
-		player->dir_y--;
+		player->dir.y++;
 	else if (dir == 'E')
-		player->dir_x++;
+		player->dir.x++;
 	else if (dir == 'W')
-		player->dir_x--;
+		player->dir.x--;
+}
+
+void	ft_dimensions_map(char **map, int *height, int *witdh)
+{
+	int	i;
+
+	i = -1;
+	*witdh = 0;
+	while (map[++i])
+	{
+		if (*witdh < ft_strlen(map[i]))
+			*witdh = ft_strlen(map[i]);
+	}
+	*height = i;
 }

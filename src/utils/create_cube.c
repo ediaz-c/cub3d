@@ -3,39 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   create_cube.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:09:32 by erick             #+#    #+#             */
-/*   Updated: 2023/10/22 01:13:54 by erick            ###   ########.fr       */
+/*   Updated: 2023/11/27 17:51:37 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+/*TODO*/
+int	ft_count_lines(char *path, int *fd)
+{
+	int		i;
+	char	*line;
 
-char	**ft_fd_map(int fd)
+	i = 0;
+	while (1)
+	{
+		line = get_next_line(*fd);
+		if (line == NULL)
+			break ;
+		free(line);
+		i++;
+	}
+	close(*fd);
+	*fd = open(path, O_RDONLY);
+	if (*fd < 0)
+		exit(ft_exiterror(BRED"Path error"COLOR_OFF));
+	return (i);
+}
+
+char	**ft_fd_map(char *path, int fd)
 {
 	char	*line;
-	char	*tmp;
-	char	*map_str;
 	char	**map;
+	int		lines;
+	char	*tmp;
+	int		i;
 
-	tmp = get_next_line(fd);
-	while (1)
+	i = -1;
+	lines = ft_count_lines(path, &fd);
+	map = malloc(sizeof(char *) * (lines + 1));
+	if (map == NULL)
+		return (NULL);
+	while (i++ < lines)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		if (ft_line_empty(line))
-			continue ;
-		map_str = ft_strjoin(tmp, line);
-		free(tmp);
-		tmp = map_str;
-		if (tmp == NULL)
-			return (close(fd), free(line), NULL);
+		tmp = ft_strtrim(line, "\n");
 		free(line);
+		map[i] = tmp;
 	}
-	map = ft_split(map_str, '\n');
-	free(map_str);
+	map[i] = NULL;
+	close(fd);
 	return (map);
 }
 
@@ -47,11 +68,11 @@ int	ft_line_empty(char	*line)
 	while (line[i])
 	{
 		if (line[i] != ' ')
-			return (0);
+			return (EXIT_SUCCESS);
 		i++;
 	}
 	free(line);
-	return (1);
+	return (EXIT_FAILURE);
 }
 
 int	ft_search_elements(t_cube *cube, char *id, char *path)
