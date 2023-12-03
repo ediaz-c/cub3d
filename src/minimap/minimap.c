@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:09:24 by erick             #+#    #+#             */
-/*   Updated: 2023/11/29 19:54:51 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:15:38 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	create_img(t_cube *cube, t_minimap **mini)
 	if ((*mini)->img == NULL)
 		exit(ft_exiterror(BRED"Error creating minimap image"COLOR_OFF));
 	(*mini)->buffer = (int *)mlx_get_data_addr((*mini)->img,
-			&(*mini)->pixel_bits, &(*mini)->line_bytes, &(*mini)->endian);
+			&(*mini)->bpp, &(*mini)->size_line, &(*mini)->endian);
 	if ((*mini)->buffer == NULL)
 		exit(ft_exiterror(BRED"Error creating minimap buffer"COLOR_OFF));
 	i = -1;

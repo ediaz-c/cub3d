@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:16:49 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/11/29 20:23:55 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/03 00:41:13 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # define WIN_H		750
 # define WIN_W		1200
 # define FOV		60
+# define NORTH		0
+# define SOUTH		1
+# define EAST		2
+# define WEST		3
 /* MINIMAP */
 # define MINI_WALL	0x00647C81 
 # define MINI_FLOOR	0x00B9B9B9
@@ -37,6 +41,20 @@ typedef struct s_line_params
 	int y;
 }	t_line_params;
 
+typedef struct s_line
+{
+	int		draw_start;
+	int		draw_end;
+	int		x; //the x coordinate of line relative to screen
+	int		y; //the current pixel index of the line (along y axis)
+	int		y0; //y start index of drawing texture
+	int		y1; //y end index of drawing texture
+	int		tex_x; //x coordinate of texture to draw
+	int		tex_y; //y coordinate of texture to draw
+	int		line_height;
+	char	wall_tex;
+}	t_line;
+
 typedef struct	s_mini_walls
 {
 	double	start_x;
@@ -56,10 +74,12 @@ typedef struct s_map
 typedef struct	s_img
 {
 	void	*img;
-	int		pixel_bits;
-	int		line_bytes;
+	int		bpp;
+	int		size_line;
 	int		endian;
 	int		pixel;
+	int		height;
+	int		width;
 	int		*buffer;
 }	t_img;
 
@@ -78,12 +98,12 @@ typedef struct s_cube
 	int					octal_f;
 	int					first_line;
 	int					run;
-	double				camera_x[WIN_W];
 	t_map				data_map;
 	struct s_minimap	*mini;
 	struct s_player		*p;
 	struct s_mlx		*mlx;
 	struct s_texture	*txt;
+	struct s_img		img;
 	int					mouse_listen;
 }	t_cube;
 
@@ -110,8 +130,8 @@ typedef struct s_minimap
 	int				width;
 	t_pos			p;
 	void			*img;
-	int				pixel_bits;
-	int				line_bytes;
+	int				bpp;
+	int				size_line;
 	int				endian;
 	int				pixel;
 	int				*buffer;
@@ -120,37 +140,27 @@ typedef struct s_minimap
 
 typedef struct	s_raysult
 {
-	int			column;
-	int			row;
-	double		distance;
-	int			direction;
 	int			side;
-	int			height;
-	t_pos		ray_pos;
+	int			hit;
+	double		perp_wall_dist;
+	double		camera_x;
+	int			curent_col;
+	int			current_row;
 	t_pos		ray_dir;
-	t_pos		map_pos;
+	t_pos		mpos;
 	t_pos		side_dist;
 	t_pos		delta_dist;
 	t_pos		step;
 	double		wall_x;
-	t_pos		floor_wall;
-	t_pos		c_floor;
+	struct s_line	*line;
 }				t_raysult;
-
-typedef struct	s_xpm
-{
-	char	*path;
-	void	*img;
-	int		width;
-	int		height;
-}	t_xpm;
 
 typedef struct	s_texture
 {
-	struct s_xpm	no;
-	struct s_xpm	so;
-	struct s_xpm	ea;
-	struct s_xpm	we;
+	struct s_img	no;
+	struct s_img	so;
+	struct s_img	ea;
+	struct s_img	we;
 	struct s_img	cei;
 	struct s_img	flo;
 }	t_texture;
@@ -160,6 +170,5 @@ typedef struct s_mlx
 	void	*mlx;
 	void	*win;
 }	t_mlx;
-
 
 # endif

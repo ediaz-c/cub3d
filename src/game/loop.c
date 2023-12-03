@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 17:12:51 by erick             #+#    #+#             */
-/*   Updated: 2023/11/29 20:31:03 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:11:30 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,13 @@ void	ft_put_minimap(t_cube *cube)
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mini->img, 10, 10);
 }
 
-int	loop(t_cube *cube)
+int	render(t_cube *cube)
 {
 	if (cube->run == 1)
 	{
-		// raycasting(cube);
-		ft_put_floor_ceiling(cube);
+		// ft_put_floor_ceiling(cube);
+		raycasting(cube);
+		mlx_put_image_to_window(cube->mlx->mlx, cube->mlx->win, cube->img.img, 0, 0);
 		ft_put_minimap(cube);
 		cube->run = -(cube->run);
 	}

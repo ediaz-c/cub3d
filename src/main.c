@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 12:22:25 by erick             #+#    #+#             */
-/*   Updated: 2023/11/27 18:45:54 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:16:14 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int	main(int ac, char *av[])
 		exit(ft_exiterror(BRED"Invalid extension"COLOR_OFF));
 	ft_get_cube(cube);
 	init_game(cube);
-	// for (int i = 0; cube->file[i]; i++)
-	// 	printf("%s\n", cube->file[i]);
 	ft_free_cube(cube);
 	exit (1);
 }

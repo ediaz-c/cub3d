@@ -1,6 +1,6 @@
 NAME		=	cub3D
 CC			=	gcc
-CFLAGS		=	#-g3 -fsanitize=address #-Wall -Werror -Wextra
+CFLAGS		=	-g3 -fsanitize=address #-Wall -Werror -Wextra
 RM			=	rm -rf
 
 #LIBS
@@ -14,9 +14,9 @@ ERROR		=	put_error.c
 MAIN		=	main.c
 ARGUMENT	=	check_argument.c get_cub.c check_map.c map_utils.c
 FREE		=	free_str.c free_cube.c
-GAME		=	init.c textures.c close.c loop.c raycast.c handler_key.c player.c move.c rotate.c handler_mouse.c
+GAME		=	game.c textures.c close.c loop.c raycast.c handler_key.c player.c move.c rotate.c handler_mouse.c
 MINI		=	minimap.c player_minimap.c
-UTILS		=	create_cube.c check_map_utils.c check_row.c get_cub_utils.c pos.c raycast_utils.c
+UTILS		=	create_cube.c check_map_utils.c check_row.c get_cub_utils.c pos.c raycasting_operations.c raycasting_draw_line.c
 
 #OBJS
 ERROR_DIR	=	$(addprefix error/, $(ERROR))

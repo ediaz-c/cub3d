@@ -1,7 +1,7 @@
-NO ../textures/n_wall.xpm
-SO ../textures/s_wall.xpm
-EA ../textures/e_wall.xpm
-WE ../textures/w_wall.xpm
+NO /Users/erick/42/cube3d/textures/n_wall.xpm
+SO /Users/erick/42/cube3d/textures/s_wall.xpm
+EA /Users/erick/42/cube3d/textures/e_wall.xpm
+WE /Users/erick/42/cube3d/textures/w_wall.xpm
 F  0,153,153
 C  255,255,255
 

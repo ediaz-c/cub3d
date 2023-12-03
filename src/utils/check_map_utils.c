@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 12:47:59 by erick             #+#    #+#             */
-/*   Updated: 2023/11/29 17:22:58 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:34:27 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,30 @@ int	ft_check_rest_rows(char **map, int row)
 
 void	ft_check_dir(t_player *player, char dir)
 {
+	double fov = 0.8;
+
 	set_pos(&player->dir, 0, 0);
-	set_pos(&player->plane, 0, 0.66);
+	set_pos(&player->plane, 0, 0);
 	if (dir == 'N')
-		player->dir.y--;
+	{
+		player->dir.y = -1;
+		player->plane.x = fov;
+	}
 	else if (dir == 'S')
-		player->dir.y++;
+	{
+		player->dir.y = 1;
+		player->plane.x = -fov;
+	}
 	else if (dir == 'E')
-		player->dir.x++;
+	{
+		player->dir.x = 1;
+		player->plane.y = fov;
+	}
 	else if (dir == 'W')
-		player->dir.x--;
+	{
+		player->dir.x = -1;
+		player->plane.y = -fov;
+	}
 }
 
 void	ft_dimensions_map(char **map, int *height, int *witdh)
