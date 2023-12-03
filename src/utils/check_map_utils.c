@@ -6,11 +6,11 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 12:47:59 by erick             #+#    #+#             */
-/*   Updated: 2023/12/01 16:34:27 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:44:20 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 char	**ft_cpy_matrix(char **matrix, char ***cpy_ptr)
 {

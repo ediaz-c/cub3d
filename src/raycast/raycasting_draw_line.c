@@ -6,11 +6,11 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:59:10 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/12/03 00:28:21 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:44:20 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 void	ft_caltulate_line(t_cube *cube, t_line *line, t_raysult *ray)
 {
@@ -94,7 +94,6 @@ void	ft_paint_pixels(t_cube *cube, t_line *line, t_raysult *ray, int x)
     {
         ray->curent_col = x;
         ray->current_row = y;
-		// my_img_pixel_put(&cube->img, x, y, 0x00FF0000);
         ft_draw_wall(cube, ray, &step, &tex_pos);
         y++;
     }

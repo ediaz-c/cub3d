@@ -6,11 +6,11 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 09:43:24 by erick             #+#    #+#             */
-/*   Updated: 2023/12/01 16:06:15 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:44:20 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 /*
 *	First operation of raycasting
 *	1. Calculate camera_x

@@ -6,11 +6,11 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 00:56:25 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/11/29 18:25:21 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:44:20 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 void	ft_move_up(t_cube *cube, t_player *p, char **map)
 {

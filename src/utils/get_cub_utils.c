@@ -6,11 +6,11 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 23:16:07 by erick             #+#    #+#             */
-/*   Updated: 2023/11/27 17:49:11 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:46:19 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 static int	split_digit(char **color)
 {
@@ -51,7 +51,7 @@ static int	get_color(char **color)
 		return (-1);
 	return (0x0 | r << 16 | g << 8 | b);
 }
-/* ARREGLAR OCTAL */
+
 int	ft_get_colors(t_cube *cube)
 {
 	char	**ceiling;

@@ -6,11 +6,11 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 21:35:25 by erick             #+#    #+#             */
-/*   Updated: 2023/11/27 18:20:09 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:45:04 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 int	ft_left_up(char **map, int r)
 {

@@ -20,7 +20,7 @@ CFLAGS+= -DSTRINGPUTX11 -w
 all: $(NOM)
 
 $(NOM):	$(OBJ)
-	@ar -r $(NOM) $(OBJ)
+	@ar -r $(NOM) $(OBJ) >/dev/null 2>&1
 	@ranlib $(NOM)
 
 clean:

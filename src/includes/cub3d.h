@@ -12,8 +12,8 @@
 
 #ifndef CUBE3D_H
 # define CUBE3D_H
-# include "../libs/libft/includes/libft.h"
-# include "../libs/mlx/mlx.h"
+# include "../../libs/libft/includes/libft.h"
+# include "../../libs/mlx/mlx.h"
 # include "color.h"
 # include "keycodes.h"
 # include "structs.h"
@@ -38,6 +38,11 @@ int			ft_check_lines_empty(char **map);
 int			ft_check_borders(t_player *p, char **map);
 void		ft_fill_map(char **map);
 /* get_cub.c */
+/*
+*	- Open the file and save the content in a matrix
+*	- Check if the elements are valids
+*	- Check if the map is valid
+*/
 void		ft_get_cube(t_cube *cube);
 int			ft_check_map(t_cube *cube);
 /* map_utils.c */
@@ -82,8 +87,8 @@ void		ft_calculate_texture_x(t_cube *cube, t_line *line, t_raysult *ray, int x);
 void		ft_paint_pixels(t_cube *cube, t_line *line, t_raysult *ray, int x);
 
 /***** GAME*****/
-/* init.c */
-void		init_game(t_cube *cube);
+/* game.c */
+void		game(t_cube *cube);
 
 /* textures.c */
 int			ft_init_textures(t_cube *cube);
@@ -118,8 +123,6 @@ void		ft_rotate_right(t_cube *cube, double rot_speed);
 int			ft_mouse(int button, int x, int y, t_cube *cube);
 void		mouse_listening(t_cube *cube);
 
-/* texture_utils.c */
-
 /***** MINIMAP *****/
 /* minimap.c */
 t_minimap	*ft_init_minimap(t_cube *cube, t_minimap **mini);
@@ -128,4 +131,12 @@ void		clean_minimap(t_cube *cube, t_minimap *mini);
 
 /* player_minimap.c */
 void		add_mini_player(t_cube *cube, t_minimap *mini);
+
+/* MAIN */
+/*
+*	Check if the arguments are valids
+*	- If the number of arguments is different than 2 exit with error
+*	- If the extension is different than .cub exit with error
+*/
+void	ft_check_args(int ac, char *av[], t_cube **cube);
 #endif
