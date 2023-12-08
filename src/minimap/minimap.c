@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:09:24 by erick             #+#    #+#             */
-/*   Updated: 2023/12/03 16:44:20 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:03:42 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ static void	create_img(t_cube *cube, t_minimap **mini)
 
 	*mini = malloc(sizeof(t_minimap));
 	if (mini == NULL)
-		exit(ft_exiterror(BRED"Error creating minimap"COLOR_OFF));
+		exit(ft_exiterror(BRED"Malloc minimap"COLOR_OFF));
 	(*mini)->height = SIZE_MINI;
 	(*mini)->width = SIZE_MINI;
 	(*mini)->img = mlx_new_image(cube->mlx->mlx,
 			(*mini)->width, (*mini)->height);
 	if ((*mini)->img == NULL)
-		exit(ft_exiterror(BRED"Error creating minimap image"COLOR_OFF));
+		exit(ft_exiterror(BRED"Creating minimap image"COLOR_OFF));
 	(*mini)->buffer = (int *)mlx_get_data_addr((*mini)->img,
 			&(*mini)->bpp, &(*mini)->size_line, &(*mini)->endian);
 	if ((*mini)->buffer == NULL)
-		exit(ft_exiterror(BRED"Error creating minimap buffer"COLOR_OFF));
+		exit(ft_exiterror(BRED"Creating minimap buffer"COLOR_OFF));
 	i = -1;
 	while (++i < (*mini)->height)
 	{
@@ -39,7 +39,7 @@ static void	create_img(t_cube *cube, t_minimap **mini)
 	}
 }
 
-void	clean_minimap(t_cube *cube, t_minimap *mini)
+void	clean_minimap(t_minimap *mini)
 {
 	int	i;
 	int	j;

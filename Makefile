@@ -1,6 +1,6 @@
 NAME		=	cub3D
 CC			=	gcc
-CFLAGS		=	#-g3 -fsanitize=address #-Wall -Werror -Wextra
+CFLAGS		=	-MMD -Wall -Werror -Wextra
 RM			=	rm -rf
 
 #LIBS
@@ -16,7 +16,7 @@ ARGUMENT	=	check_argument.c get_cub.c check_map.c map_utils.c
 FREE		=	free_str.c free_cube.c
 GAME		=	game.c textures.c close.c loop.c handler_key.c player.c move.c rotate.c handler_mouse.c
 MINI		=	minimap.c player_minimap.c
-RAYCAST		=	raycast.c raycasting_draw_line.c raycasting_operations.c
+RAYCAST		=	raycast.c raycasting_draw_line.c raycasting_operations_wall.c raycasting_operations_floor_ceiling.c
 UTILS		=	create_cube.c check_map_utils.c check_row.c get_cub_utils.c pos.c
 
 #OBJS
@@ -30,6 +30,7 @@ RAY_DIR		=	$(addprefix raycast/, $(RAYCAST))
 SRC_DIR		=	$(addprefix src/, $(ERROR_DIR) $(ARG_DIR) $(FREE_DIR) $(UTILS_DIR) $(MAIN) $(GAME_DIR) $(MINI_DIR) $(RAY_DIR))
 
 OBJS		=	$(SRC_DIR:.c=.o)
+DEPS		=	$(OBJS:.o=.d)
 
 # COLORS
 OFF			=	\033[0m
@@ -42,11 +43,12 @@ BLINK		=	\033[5m
 
 all:	$(NAME)
 
+
 .c.o:	%.o:%.c
 	@${CC} ${CFLAGS} -c $< -o $(<:.c=.o)
 
 $(NAME):	$(OBJS)
-	@clear
+	# @clear
 	@echo "$(GREEN)$(BLINK)	Compiling...$(OFF)"
 	@make -C $(MLX_PATH)
 	@echo "$(PURPLE) MLX		$(GREEN)Compilado$(OFF)"
@@ -62,6 +64,9 @@ $(NAME):	$(OBJS)
 			"╚██████╗╚██████╔╝██████╔╝██████╔╝██████╔╝\n"\
 			" ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝\n$(OFF)"\
 
+debug:	CFLAGS += -g3 -fsanitize=address
+debug:	all
+
 clean:
 	@echo "$(WHITE)$(BLINK)$(RED)Cleaning...$(OFF)"
 	@$(RM) $(OBJS)
@@ -70,6 +75,8 @@ clean:
 	@echo "$(PURPLE) Libft		$(RED)Deleted objects$(OFF)"
 	@make clean -C libs/mlx
 	@echo "$(PURPLE) Mlx		$(RED)Deleted objects$(OFF)"
+	@echo "$(PURPLE) Dependencies	$(RED)Deleted$(OFF)"
+	@$(RM) $(DEPS)
 
 fclean: clean
 	@echo "\n$(WHITE)$(BLINK)$(RED)Cleaning libs and binary...$(OFF)"

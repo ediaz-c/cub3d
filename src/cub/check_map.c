@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 17:33:17 by erick             #+#    #+#             */
-/*   Updated: 2023/12/03 16:44:20 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:37:10 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,11 @@ char	*add_spaces(char *str, int max_len)
 	tmp = str;
 	spaces = ft_calloc(max_len - ft_strlen(str) + 1, sizeof(char));
 	if (spaces == NULL)
-		exit(ft_exiterror("Malloc error"));
+		exit(ft_exiterror("Malloc"));
 	ft_memset(spaces, ' ', max_len - ft_strlen(str));
 	str = ft_strjoin(str, spaces);
 	if (str == NULL)
-		exit(ft_exiterror("Malloc error"));
+		exit(ft_exiterror("Malloc"));
 	free(spaces);
 	if (tmp)
 		free(tmp);
@@ -117,19 +117,18 @@ void	ft_fill_map(char **map)
 {
 	int	i;
 	int	max_len;
-	char	*spaces;
 	
 	i = -1;
 	max_len = 0;
 	while (map[++i])
 	{
-		if (ft_strlen(map[i]) > max_len)
+		if ((int)ft_strlen(map[i]) > max_len)
 			max_len = ft_strlen(map[i]);
 	}
 	i = -1;
 	while (map[++i])
 	{
-		if (ft_strlen(map[i]) < max_len)
+		if ((int)ft_strlen(map[i]) < max_len)
 			map[i] = add_spaces(map[i], max_len);
 	}
 }

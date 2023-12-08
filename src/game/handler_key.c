@@ -6,11 +6,18 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:19:35 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/12/03 16:44:20 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:10:37 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int	ft_keyrelease(int keycode, t_cube *cube)
+{
+	if (keycode == KEY_SHIFT)
+		cube->p->move_speed = 0.1;
+	return (1);
+}
 
 int	ft_keypress(int keycode, t_cube *cube)
 {
@@ -21,6 +28,8 @@ int	ft_keypress(int keycode, t_cube *cube)
 		ft_handler_move(keycode, cube);
 	else if (keycode == KEY_LEFT || keycode == KEY_RIGHT)
 		ft_handler_rotate(keycode, cube);
+	else if (keycode == KEY_SHIFT)
+		cube->p->move_speed = 0.3;
 	else if (keycode == KEY_Q)
 	{
 		mlx_mouse_show();

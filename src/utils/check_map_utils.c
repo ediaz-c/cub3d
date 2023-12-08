@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 12:47:59 by erick             #+#    #+#             */
-/*   Updated: 2023/12/03 16:44:20 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:04:23 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**ft_cpy_matrix(char **matrix, char ***cpy_ptr)
 	{
 		(*cpy_ptr)[i] = ft_strdup(matrix[i]);
 		if ((*cpy_ptr)[i] == NULL)
-			exit(ft_exiterror(BRED"Malloc error"COLOR_OFF));
+			exit(ft_exiterror(BRED"Malloc"COLOR_OFF));
 	}
 	(*cpy_ptr)[i] = 0;
 	return (*cpy_ptr);
@@ -77,22 +77,22 @@ void	ft_check_dir(t_player *player, char dir)
 	set_pos(&player->plane, 0, 0);
 	if (dir == 'N')
 	{
-		player->dir.y = -1;
+		player->dir.y = -0.99;
 		player->plane.x = fov;
 	}
 	else if (dir == 'S')
 	{
-		player->dir.y = 1;
+		player->dir.y = 0.99;
 		player->plane.x = -fov;
 	}
 	else if (dir == 'E')
 	{
-		player->dir.x = 1;
+		player->dir.x = 0.99;
 		player->plane.y = fov;
 	}
 	else if (dir == 'W')
 	{
-		player->dir.x = -1;
+		player->dir.x = -0.99;
 		player->plane.y = -fov;
 	}
 }
@@ -105,7 +105,7 @@ void	ft_dimensions_map(char **map, int *height, int *witdh)
 	*witdh = 0;
 	while (map[++i])
 	{
-		if (*witdh < ft_strlen(map[i]))
+		if (*witdh < (int)ft_strlen(map[i]))
 			*witdh = ft_strlen(map[i]);
 	}
 	*height = i;

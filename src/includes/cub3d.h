@@ -76,14 +76,14 @@ void		ft_check_dir(t_player *player, char dir);
 /* pos.c */
 void		set_pos(t_pos *pos, double x, double y);
 void		cpy_pos(t_pos *pos1, t_pos *pos2);
-/* raycasting_operations.c */
-void		ft_calculate_ray_and_dist(t_cube *cube, t_raysult *ray, t_player *p, int x);
-void		ft_calculate_step(t_cube *cube, t_raysult *ray, t_player *p);
-char		ft_dda(t_cube *cube, t_raysult *ray, t_player *p);
-void		ft_calculate_wall_dist(t_raysult *ray, t_player *p);
+/* raycasting_operations_wall.c */
+void		ft_calculate_ray_and_dist(t_raysult *ray, t_player *p, int x);
+void		ft_calculate_step(t_raysult *ray, t_player *p);
+char		ft_dda(t_cube *cube, t_raysult *ray);
+void		ft_calculate_wall_dist(t_raysult *ray);
 /* raycasting_draw_line.c */
-void		ft_caltulate_line(t_cube *cube, t_line *line, t_raysult *ray);
-void		ft_calculate_texture_x(t_cube *cube, t_line *line, t_raysult *ray, int x);
+void		ft_caltulate_line(t_line *line, t_raysult *ray);
+void		ft_calculate_texture_x(t_cube *cube, t_line *line, t_raysult *ray);
 void		ft_paint_pixels(t_cube *cube, t_line *line, t_raysult *ray, int x);
 
 /***** GAME*****/
@@ -100,7 +100,8 @@ int			ft_close(int k, t_mlx *mlx);
 int			render(t_cube *cube);
 /* raycasting.c */
 void		raycasting(t_cube *cube);
-
+void		my_img_pixel_put(t_img *img, int x, int y, int color);
+void	ft_render_floor_and_ceiling(t_cube *cube, t_raysult *ray, t_player *p);
 /* player.c */
 void		ft_init_player(t_cube *cube);
 
@@ -108,6 +109,7 @@ void		ft_init_player(t_cube *cube);
 int			ft_keypress(int keycode, t_cube *cube);
 void		ft_handler_move(int keycode, t_cube *cube);
 void		ft_handler_rotate(int keycode, t_cube *cube);
+int			ft_keyrelease(int keycode, t_cube *cube);
 
 /* move.c */
 void		ft_move_up(t_cube *cube, t_player *p, char **map);
@@ -127,7 +129,7 @@ void		mouse_listening(t_cube *cube);
 /* minimap.c */
 t_minimap	*ft_init_minimap(t_cube *cube, t_minimap **mini);
 void		add_mini_walls(t_cube *cube, t_minimap *mini);
-void		clean_minimap(t_cube *cube, t_minimap *mini);
+void		clean_minimap(t_minimap *mini);
 
 /* player_minimap.c */
 void		add_mini_player(t_cube *cube, t_minimap *mini);

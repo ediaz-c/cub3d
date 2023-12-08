@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:28:30 by erick             #+#    #+#             */
-/*   Updated: 2023/12/03 16:44:20 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/07 22:44:32 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_get_file(t_cube *cube)
 
 	fd = open(cube->path, O_RDONLY);
 	if (fd < 0)
-		exit(ft_exiterror(BRED"Path error"COLOR_OFF));
+		exit(ft_exiterror(BRED"Path invalid"COLOR_OFF));
 	
 	cube->file = ft_fd_map(cube->path, fd);
 	if (cube->file == NULL)
@@ -91,13 +91,13 @@ int	ft_check_map(t_cube *cube)
 void	ft_get_cube(t_cube *cube)
 {
 	if (ft_get_file(cube) == 0)
-		exit(ft_exiterror_cube(BRED"Error getting the file"COLOR_OFF, cube));
+		exit(ft_exiterror_cube(BRED"Getting the file"COLOR_OFF, cube));
 	if (ft_get_elements(cube) == 0)
-		exit(ft_exiterror_cube(BRED"Error getting elements"COLOR_OFF, cube));
+		exit(ft_exiterror_cube(BRED"Getting elements"COLOR_OFF, cube));
 	if (ft_get_colors(cube))
-		exit(ft_exiterror_cube(BRED"Error checking colors"COLOR_OFF, cube));
+		exit(ft_exiterror_cube(BRED"Checking colors"COLOR_OFF, cube));
 	if (ft_get_map(cube) == 0)
-		exit(ft_exiterror_cube(BRED"Error getting map"COLOR_OFF, cube));
+		exit(ft_exiterror_cube(BRED"Getting map"COLOR_OFF, cube));
 	if (ft_check_map(cube))
 		exit(ft_exiterror_cube(BRED"Map invalid"COLOR_OFF, cube));
 	ft_change_chars(cube->map, cube->p);

@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 12:22:25 by erick             #+#    #+#             */
-/*   Updated: 2023/12/03 16:44:33 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/07 22:43:15 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_check_args(int ac, char *av[], t_cube **cube)
 	t_cube	*cube_ptr;
 
 	if (create_cube(&cube_ptr) == NULL)
-		exit(ft_exiterror(BRED"Error creating cube"COLOR_OFF));
+		exit(ft_exiterror(BRED"Creating cube"COLOR_OFF));
 	if (ac != 2)
 		exit(ft_exiterror(BRED"Invalids arguments"COLOR_OFF));
 	if (ft_check_format(av[1], cube_ptr))

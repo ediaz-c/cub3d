@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting_operations.c                            :+:      :+:    :+:   */
+/*   raycasting_operations_wall.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:25:34 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/12/03 16:49:12 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/08 14:20:30 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	ft_calculate_ray_and_dist(t_cube *cube, t_raysult *ray, t_player *p, int x)
+void	ft_calculate_ray_and_dist(t_raysult *ray, t_player *p, int x)
 {
 	ray->camera_x = 2 * x / (double)WIN_W - 1;
 	ray->ray_dir.x = p->dir.x + p->plane.x * ray->camera_x;
@@ -27,7 +27,7 @@ void	ft_calculate_ray_and_dist(t_cube *cube, t_raysult *ray, t_player *p, int x)
 		ray->delta_dist.y = fabs(1 / ray->ray_dir.y);
 }
 
-void	ft_calculate_step(t_cube *cube, t_raysult *ray, t_player *p)
+void	ft_calculate_step(t_raysult *ray, t_player *p)
 {
 	if (ray->ray_dir.x < 0)
 	{
@@ -51,7 +51,7 @@ void	ft_calculate_step(t_cube *cube, t_raysult *ray, t_player *p)
 	}
 }
 
-char		get_wall_tex(t_cube *cube, t_raysult *ray)
+char		get_wall_tex(t_raysult *ray)
 {
 	char	wall_tex;
 
@@ -66,7 +66,7 @@ char		get_wall_tex(t_cube *cube, t_raysult *ray)
 	return (wall_tex);
 }
 
-char	ft_dda(t_cube *cube, t_raysult *ray, t_player *p)
+char	ft_dda(t_cube *cube, t_raysult *ray)
 {
 	char	**map;
 	char	wall;
@@ -86,14 +86,14 @@ char	ft_dda(t_cube *cube, t_raysult *ray, t_player *p)
 			ray->mpos.y += ray->step.y;
 			ray->side = 1;
 		}
-		wall = get_wall_tex(cube, ray);
+		wall = get_wall_tex(ray);
 		if (map[(int)ray->mpos.y][(int)ray->mpos.x] == '1')
 			ray->hit = 1;
 	}
 	return (wall);
 }
 
-void	ft_calculate_wall_dist(t_raysult *ray, t_player *p)
+void	ft_calculate_wall_dist(t_raysult *ray)
 {
 	if (ray->side == 0)
 		ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x;

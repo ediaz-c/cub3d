@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:09:32 by erick             #+#    #+#             */
-/*   Updated: 2023/12/03 16:44:20 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/07 22:54:45 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_count_lines(char *path, int *fd)
 	close(*fd);
 	*fd = open(path, O_RDONLY);
 	if (*fd < 0)
-		exit(ft_exiterror(BRED"Path error"COLOR_OFF));
+		exit(ft_exiterror(BRED"Path invalid"COLOR_OFF));
 	return (i);
 }
 

@@ -6,13 +6,13 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:16:49 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/12/03 00:41:13 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/08 14:44:54 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
-# define CHARS_MAP	" 01NSEW"
+# define CHARS_MAP	" 01NSEWOC"
 # define CHARS_P	"NSEW"
 # define WIN_H		750
 # define WIN_W		1200
@@ -27,6 +27,8 @@
 # define MINI_PLAYER 0x00FF0000
 # define SIZE_MINI 200
 # define SIZE_WALL 24
+# define TEXTURE_WIDHT 64
+# define TEXTURE_HEIGHT 64
 
 typedef struct s_line_params
 {
@@ -113,6 +115,12 @@ typedef struct s_pos
 	double	y;
 }	t_pos;
 
+typedef struct s_pos_int
+{
+	int	x;
+	int	y;
+}	t_pos_int;
+
 typedef struct s_player
 {
 	t_pos	pos;
@@ -147,6 +155,15 @@ typedef struct	s_raysult
 	int			curent_col;
 	int			current_row;
 	t_pos		ray_dir;
+	t_pos 		ray_dir0;	//BONUS
+	t_pos 		ray_dir1;	//BONUS
+	int			screen_pos;	//BONUS
+	double		pos_z;		//BONUS
+	double		row_dist;	//BONUS
+	t_pos		floor_step;	//BONUS
+	t_pos		floor;		//BONUS
+	t_pos_int	cell;		//BONUS
+	t_pos_int	tex;		//BONUS
 	t_pos		mpos;
 	t_pos		side_dist;
 	t_pos		delta_dist;
@@ -161,8 +178,10 @@ typedef struct	s_texture
 	struct s_img	so;
 	struct s_img	ea;
 	struct s_img	we;
-	struct s_img	cei;
-	struct s_img	flo;
+	struct s_img	door_wall;	//BONUS
+	struct s_img	door;		//BONUS
+	struct s_img	floor;		//BONUS
+	struct s_img	ceiling;	//BONUS
 }	t_texture;
 
 typedef struct s_mlx

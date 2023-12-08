@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 23:16:07 by erick             #+#    #+#             */
-/*   Updated: 2023/12/03 16:46:19 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:37:57 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,10 @@ static int	split_digit(char **color)
 
 static int	get_color(char **color)
 {
-	int	t;
 	int	r;
 	int	g;
 	int	b;
 
-	t = 0;
 	r = ft_atoi(color[0]);
 	g = ft_atoi(color[1]);
 	b = ft_atoi(color[2]);

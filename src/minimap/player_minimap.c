@@ -6,26 +6,55 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 11:39:59 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/12/03 16:44:20 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:59:45 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	draw_player(t_minimap *mini, int scale)
-{
-	int	i;
-	int	j;
 
-	i = -scale;
-	while (++i < scale)
+
+void draw_circle(t_minimap *mini, int x, int y)
+{
+	int	xc;
+	int	yc;
+	int	i;
+
+	xc = SIZE_MINI / 2;
+	yc = SIZE_MINI / 2;
+	for (i = -x; i <= x; i++)
 	{
-		j = -scale;
-		while (++j < scale)
+		mini->buffer[(xc+i) * SIZE_MINI + (yc+y)] = 0x00FF0000;
+		mini->buffer[(xc+i) * SIZE_MINI + (yc-y)] = 0x00FF0000;
+	}
+	for (i = -y; i <= y; i++)
+	{
+		mini->buffer[(xc+i) * SIZE_MINI + (yc+x)] = 0x00FF0000;
+		mini->buffer[(xc+i) * SIZE_MINI + (yc-x)] = 0x00FF0000;
+	}
+}
+
+void draw_player(t_minimap *mini, int radius)
+{
+	int x;
+	int y;
+	int d;
+
+	x = 0;
+	y = radius;
+	d = 3 - 2 * radius;
+	draw_circle(mini, x, y);
+	while (y >= x)
+	{
+		x++;
+		if (d > 0)
 		{
-			mini->buffer[(SIZE_MINI / 2 + i) * SIZE_MINI
-				+(SIZE_MINI / 2 + j)] = 0x00FF0000;
+			y--;
+			d = d + 4 * (x - y) + 10;
 		}
+		else
+			d = d + 4 * x + 6;
+		draw_circle(mini, x, y);
 	}
 }
 
@@ -91,7 +120,7 @@ void	add_mini_player(t_cube *cube, t_minimap *mini)
 	int				line_length;
 	t_line_params	params;
 
-	scale = 5;
+	scale = 3;
 	line_length = 20;
 	draw_player(mini, scale);
 	calculate_end_points(cube, line_length, &params);
