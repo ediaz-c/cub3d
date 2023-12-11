@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 09:43:24 by erick             #+#    #+#             */
-/*   Updated: 2023/12/08 16:42:26 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/09 02:13:33 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	raycasting(t_cube *cube)
 	x = -1;
 	player = cube->p;
 	mlx_clear_window(cube->mlx->mlx, cube->mlx->win);
-	ft_render_floor_and_ceiling(cube, &ray, player);
 	while (++x < WIN_W)
 	{
 		ft_first_op(player, &ray, x);

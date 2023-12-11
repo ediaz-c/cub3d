@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting_operations_wall.c                            :+:      :+:    :+:   */
+/*   raycasting_operations_wall.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:25:34 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/12/08 14:20:30 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/09 02:38:18 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_calculate_step(t_raysult *ray, t_player *p)
 	}
 }
 
-char		get_wall_tex(t_raysult *ray)
+char	get_wall_tex(t_raysult *ray)
 {
 	char	wall_tex;
 

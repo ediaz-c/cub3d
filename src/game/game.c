@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 19:00:23 by erick             #+#    #+#             */
-/*   Updated: 2023/12/08 16:36:46 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/09 02:15:26 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	init_game(t_cube *cube)
 		exit(ft_exiterror(BRED"Initializing mlx"COLOR_OFF));
 	if (ft_init_textures(cube) == EXIT_FAILURE)
 		exit(ft_exiterror(BRED"Initializing textures"COLOR_OFF));
-	if (ft_init_minimap(cube, &cube->mini) == 0)
-		exit(ft_exiterror(BRED"Initializing minimap"COLOR_OFF));
 }
 
 void	game(t_cube *cube)
@@ -45,8 +43,6 @@ void	game(t_cube *cube)
 	mlx = cube->mlx;
 	mlx_loop_hook(mlx->mlx, render, cube);
 	mlx_hook(mlx->win, 2, (1L << 0), ft_keypress, cube);
-	mlx_hook(mlx->win, 3, (1L << 1), ft_keyrelease, cube);
-	mlx_mouse_hook(mlx->win, ft_mouse, cube);
 	mlx_hook(mlx->win, 17, (1L << 17), ft_close, mlx);
 	mlx_loop(mlx->mlx);
 }

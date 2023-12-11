@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                           :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 12:22:41 by erick             #+#    #+#             */
-/*   Updated: 2023/10/21 23:24:16 by erick            ###   ########.fr       */
+/*   Updated: 2023/12/09 02:37:34 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#ifndef CUB3D_H
+# define CUB3D_H
 # include "../../libs/libft/includes/libft.h"
 # include "../../libs/mlx/mlx.h"
 # include "color.h"
@@ -101,7 +101,8 @@ int			render(t_cube *cube);
 /* raycasting.c */
 void		raycasting(t_cube *cube);
 void		my_img_pixel_put(t_img *img, int x, int y, int color);
-void	ft_render_floor_and_ceiling(t_cube *cube, t_raysult *ray, t_player *p);
+void		ft_render_floor_and_ceiling(t_cube *cube,
+				t_raysult *ray, t_player *p);
 /* player.c */
 void		ft_init_player(t_cube *cube);
 
@@ -109,7 +110,6 @@ void		ft_init_player(t_cube *cube);
 int			ft_keypress(int keycode, t_cube *cube);
 void		ft_handler_move(int keycode, t_cube *cube);
 void		ft_handler_rotate(int keycode, t_cube *cube);
-int			ft_keyrelease(int keycode, t_cube *cube);
 
 /* move.c */
 void		ft_move_up(t_cube *cube, t_player *p, char **map);
@@ -120,25 +120,11 @@ void		ft_move_right(t_cube *cube, t_player *p, char **map);
 /* rotate.c */
 void		ft_rotate_left(t_cube *cube, double rot_speed);
 void		ft_rotate_right(t_cube *cube, double rot_speed);
-
-/* handler_mouse.c */
-int			ft_mouse(int button, int x, int y, t_cube *cube);
-void		mouse_listening(t_cube *cube);
-
-/***** MINIMAP *****/
-/* minimap.c */
-t_minimap	*ft_init_minimap(t_cube *cube, t_minimap **mini);
-void		add_mini_walls(t_cube *cube, t_minimap *mini);
-void		clean_minimap(t_minimap *mini);
-
-/* player_minimap.c */
-void		add_mini_player(t_cube *cube, t_minimap *mini);
-
 /* MAIN */
 /*
 *	Check if the arguments are valids
 *	- If the number of arguments is different than 2 exit with error
 *	- If the extension is different than .cub exit with error
 */
-void	ft_check_args(int ac, char *av[], t_cube **cube);
+void		ft_check_args(int ac, char *av[], t_cube **cube);
 #endif

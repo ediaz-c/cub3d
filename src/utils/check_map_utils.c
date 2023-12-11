@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 12:47:59 by erick             #+#    #+#             */
-/*   Updated: 2023/12/08 15:04:23 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/09 02:42:17 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,9 @@ int	ft_check_rest_rows(char **map, int row)
 
 void	ft_check_dir(t_player *player, char dir)
 {
-	double fov = 0.8;
+	double	fov;
 
+	fov = 0.8;
 	set_pos(&player->dir, 0, 0);
 	set_pos(&player->plane, 0, 0);
 	if (dir == 'N')

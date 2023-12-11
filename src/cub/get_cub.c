@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:28:30 by erick             #+#    #+#             */
-/*   Updated: 2023/12/07 22:44:32 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/09 02:27:03 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	ft_get_file(t_cube *cube)
 	fd = open(cube->path, O_RDONLY);
 	if (fd < 0)
 		exit(ft_exiterror(BRED"Path invalid"COLOR_OFF));
-	
 	cube->file = ft_fd_map(cube->path, fd);
 	if (cube->file == NULL)
 		return (close(fd), 0);

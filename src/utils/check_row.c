@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 21:35:25 by erick             #+#    #+#             */
-/*   Updated: 2023/12/03 16:45:04 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/09 02:42:30 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	ft_right_down(char **map, int r)
 {
 	int	ri;
 
-	ri = ft_strlen(map[r] ) - 1;
+	ri = ft_strlen(map[r]) - 1;
 	while (r >= 0 && map[r][ri] == ' ')
 		ri--;
 	while (r >= 0 && map[r][ri] == '1')
