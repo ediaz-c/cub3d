@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:16:49 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/12/11 11:34:00 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/11 23:27:44 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ typedef struct	s_raysult
 	int			curent_col;
 	int			current_row;
 	t_pos		ray_dir;
+	char		door_dir;	//BONUS
 	int			is_door;	//BONUS
 	t_pos 		ray_dir0;	//BONUS
 	t_pos 		ray_dir1;	//BONUS

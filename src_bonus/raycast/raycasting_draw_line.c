@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:59:10 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/12/09 01:44:34 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2023/12/12 01:16:17 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,6 @@ void	ft_calculate_texture_x(t_cube *cube, t_line *line, t_raysult *ray)
         line->tex_x = texture->width - line->tex_x - 1;
 }
 
-int	ft_dark_color_wall(t_raysult *ray, int color)
-{
-	double	max_dist;
-	double	factor;
-	int	r;
-	int	g;
-	int	b;
-	
-	max_dist = 15;
-	factor = 1.0 - ray->perp_wall_dist / max_dist;
-	if (factor < 0)
-		factor = 0;
-	r = ((color >> 16) & 0xFF) * factor;
-	g = ((color >> 8) & 0xFF) * factor;
-	b = (color & 0xFF) * factor;
-	return (r << 16) | (g << 8) | b;
-}
-
 void	ft_draw_wall(t_cube *cube, t_raysult *ray, double *step, double *tex_pos)
 {
 	t_img	*texture;
@@ -110,11 +92,8 @@ void	ft_paint_pixels(t_cube *cube, t_line *line, t_raysult *ray, int x)
     texture = ft_get_orientation(line, cube, ray);
     step = 1.0 * texture->height / line->line_height;
     tex_pos = (line->draw_start - WIN_H / 2 + line->line_height / 2) * step;
-    // y = -1;
 	y = line->draw_start;
     ray->line = line;
-    // while (++y < line->draw_start)
-    //     my_img_pixel_put(&cube->img, x, y, cube->octal_c);
     while (y <= line->draw_end)
     {
         ray->curent_col = x;
@@ -122,6 +101,4 @@ void	ft_paint_pixels(t_cube *cube, t_line *line, t_raysult *ray, int x)
         ft_draw_wall(cube, ray, &step, &tex_pos);
         y++;
     }
-    // while (y < WIN_H)
-    //     my_img_pixel_put(&cube->img, x, y++, cube->octal_f);
 }

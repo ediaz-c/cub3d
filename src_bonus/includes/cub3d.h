@@ -101,7 +101,9 @@ int			render(t_cube *cube);
 /* raycasting.c */
 void		raycasting(t_cube *cube);
 void		my_img_pixel_put(t_img *img, int x, int y, int color);
-void	ft_render_floor_and_ceiling(t_cube *cube, t_raysult *ray, t_player *p);
+void		ft_render_floor_and_ceiling(t_cube *cube, t_raysult *ray, t_player *p);
+int			ft_dark_color_wall(t_raysult *ray, int color);
+void		ft_check_is_door(t_cube *cube, t_raysult *ray);
 /* player.c */
 void		ft_init_player(t_cube *cube);
 
