@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:09:24 by erick             #+#    #+#             */
-/*   Updated: 2023/12/08 15:03:42 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:36:55 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ void	add_mini_walls(t_cube *cube, t_minimap *mini)
 				if (cube->map[walls.map_y][walls.map_x] == '1')
 					mini->buffer[(int)walls.i
 						* SIZE_MINI + (int)walls.j] = 0x00000000;
+				else if (cube->map[walls.map_y][walls.map_x] == 'D')
+					mini->buffer[(int)walls.i
+						* SIZE_MINI + (int)walls.j] = 0x00FFD700;
 			}
 			walls.j++;
 		}

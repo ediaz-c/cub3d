@@ -76,16 +76,22 @@ void		ft_check_dir(t_player *player, char dir);
 /* pos.c */
 void		set_pos(t_pos *pos, double x, double y);
 void		cpy_pos(t_pos *pos1, t_pos *pos2);
+void		set_pos_int(t_pos_int *pos, int x, int y);
+void		cpy_pos_int(t_pos_int *pos1, t_pos_int *pos2);
 /* raycasting_operations_wall.c */
 void		ft_calculate_ray_and_dist(t_raysult *ray, t_player *p, int x);
 void		ft_calculate_step(t_raysult *ray, t_player *p);
 char		ft_dda(t_cube *cube, t_raysult *ray);
-void		ft_calculate_wall_dist(t_raysult *ray);
+void		ft_calculate_wall_dist(t_raysult *ray, t_cube *cube);
 /* raycasting_draw_line.c */
 void		ft_caltulate_line(t_line *line, t_raysult *ray);
 void		ft_calculate_texture_x(t_cube *cube, t_line *line, t_raysult *ray);
 void		ft_paint_pixels(t_cube *cube, t_line *line, t_raysult *ray, int x);
-
+/* check_hit.c */
+int			ft_check_hit_wall(t_cube *cube, t_raysult *ray);
+int			ft_check_hit_door(t_cube *cube, t_raysult *ray);
+/* my_mlx.c*/
+void	my_img_pixel_put(t_img *img, int x, int y, int color);
 /***** GAME*****/
 /* game.c */
 void		game(t_cube *cube);

@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:59:10 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/12/12 01:16:17 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/09 20:26:55 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ t_img	*ft_get_orientation(t_line *line, t_cube *cube, t_raysult *ray)
 
 	texture = NULL;
 	(void)ray;
-	if (ray->is_door == 1)
+	if (ray->is_door == 1 && ray->door == 0)
 		texture = &cube->txt->door_wall;
+	else if (ray->is_door == 1 && ray->door == 1)
+		texture = &cube->txt->door;
 	else if (line->wall_tex == 'N')
 		texture = &cube->txt->no;
 	else if (line->wall_tex == 'S')
@@ -40,14 +42,6 @@ t_img	*ft_get_orientation(t_line *line, t_cube *cube, t_raysult *ray)
 	else if (line->wall_tex == 'W')
 		texture = &cube->txt->we;
 	return (texture);
-}
-
-void	my_img_pixel_put(t_img *img, int x, int y, int color)
-{
-	char	*dst;
-
-		dst = (char *)img->buffer + (y * img->size_line + x * (img->bpp / 8));
-		*(unsigned int *)dst = color;
 }
 
 void	ft_calculate_texture_x(t_cube *cube, t_line *line, t_raysult *ray)

@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 18:32:48 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/12/08 16:53:09 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/09 20:13:07 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,19 @@ int ft_mouse(int button, int x, int y, t_cube *cube)
 	mlx_mouse_move(cube->mlx->win, WIN_W / 2, WIN_H / 2);
 	(void)x;
 	(void)y;
-	(void)button;
+	if (button == 2 && cube->map[(int)cube->p->pos.y][(int)cube->p->pos.x] != 'd')
+	{
+		if (cube->door_handler.x != -1 && cube->door_handler.y != -1 && cube->map[(int)cube->door_handler.y][(int)cube->door_handler.x] == 'D')
+		{
+			cube->map[(int)cube->door_handler.y][(int)cube->door_handler.x] = 'd';
+			cube->run = 1;
+		}
+		else if (cube->door_handler.x != -1 && cube->door_handler.y != -1 && cube->map[(int)cube->door_handler.y][(int)cube->door_handler.x] == 'd')
+		{
+			cube->map[(int)cube->door_handler.y][(int)cube->door_handler.x] = 'D';
+			cube->run = 1;
+		}
+	}
 	return (1);
 }
 

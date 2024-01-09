@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:28:30 by erick             #+#    #+#             */
-/*   Updated: 2023/12/08 18:24:27 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:40:41 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,5 @@ void	ft_get_cube(t_cube *cube)
 	ft_size_map(cube);
 	ft_init_player(cube);
 	cube->run = 1;
+	set_pos(&cube->door_handler, 0, 0);
 }

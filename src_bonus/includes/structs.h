@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:16:49 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/12/11 23:27:44 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:42:01 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 # define WIN_H		750
 # define WIN_W		1200
 # define FOV		60
-# define NORTH		0
+# define NORTH		1
 # define SOUTH		1
-# define EAST		2
+# define EAST		0
+# define WEST		0
 /* MINIMAP */
 # define MINI_WALL	0x00647C81 
 # define MINI_FLOOR	0x00B9B9B9
@@ -28,6 +29,18 @@
 # define SIZE_WALL 24
 # define TEXTURE_WIDHT 64
 # define TEXTURE_HEIGHT 64
+
+typedef struct s_pos
+{
+	double	x;
+	double	y;
+}	t_pos;
+
+typedef struct s_pos_int
+{
+	int	x;
+	int	y;
+}	t_pos_int;
 
 typedef struct s_line_params
 {
@@ -106,19 +119,8 @@ typedef struct s_cube
 	struct s_texture	*txt;
 	struct s_img		img;
 	int					mouse_listen;
+	t_pos				door_handler;
 }	t_cube;
-
-typedef struct s_pos
-{
-	double	x;
-	double	y;
-}	t_pos;
-
-typedef struct s_pos_int
-{
-	int	x;
-	int	y;
-}	t_pos_int;
 
 typedef struct s_player
 {
@@ -156,6 +158,7 @@ typedef struct	s_raysult
 	t_pos		ray_dir;
 	char		door_dir;	//BONUS
 	int			is_door;	//BONUS
+	int			door;		//BONUS
 	t_pos 		ray_dir0;	//BONUS
 	t_pos 		ray_dir1;	//BONUS
 	int			screen_pos;	//BONUS

@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 12:22:25 by erick             #+#    #+#             */
-/*   Updated: 2023/12/07 22:43:15 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/09 16:22:26 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int ac, char *av[])
 {
 	t_cube	*cube;
 
-	atexit(leaks);
+	// atexit(leaks);
 	ft_check_args(ac, av, &cube);
 	ft_get_cube(cube);
 	game(cube);

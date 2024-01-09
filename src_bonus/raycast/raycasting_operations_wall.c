@@ -68,12 +68,16 @@ char		get_wall_tex(t_raysult *ray)
 
 char	ft_dda(t_cube *cube, t_raysult *ray)
 {
-	char	**map;
 	char	wall;
 
-	map = cube->map;
 	while (ray->hit == 0)
 	{
+		ray->is_door = 0;
+		if (cube->map[(int)ray->mpos.y][(int)ray->mpos.x] == 'd')
+		{
+			set_pos(&cube->door_handler, ray->mpos.x, ray->mpos.y);
+			ray->is_door = 1;
+		}
 		if (ray->side_dist.x < ray->side_dist.y)
 		{
 			ray->side_dist.x += ray->delta_dist.x;
@@ -87,34 +91,22 @@ char	ft_dda(t_cube *cube, t_raysult *ray)
 			ray->side = 1;
 		}
 		wall = get_wall_tex(ray);
-		if (map[(int)ray->mpos.y][(int)ray->mpos.x] == '1')
+		if (ft_check_hit_door(cube, ray) == 0)
+			return (wall);
+		if (ft_check_hit_wall(cube, ray) == 0)
 			ray->hit = 1;
-		if (map[(int)ray->mpos.y][(int)ray->mpos.x] == 'D')
-		{
-			// Calcula el punto de intersección con la celda de la puerta
-			double next_step = (ray->side == 0) ? ray->delta_dist.x : ray->delta_dist.y;
-			double half_step = next_step / 2.0;
-
-			// Si todavía estamos en la misma celda, hemos golpeado la puerta
-			if ((ray->side == 0 && floor(ray->mpos.x + half_step) == floor(ray->mpos.x)) ||
-				(ray->side == 1 && floor(ray->mpos.y + half_step) == floor(ray->mpos.y)))
-			{
-				ray->hit = 1;
-				// Desplaza el valor de la pared x o y en 0.5 para que la puerta se dibuje a mitad de la celda del mapa
-				if (ray->side == 0)
-					ray->mpos.x += ray->step.x / 2;
-				else
-					ray->mpos.y += ray->step.y / 2;
-			}
-		}
 	}
 	return (wall);
 }
 
-void	ft_calculate_wall_dist(t_raysult *ray)
+void	ft_calculate_wall_dist(t_raysult *ray, t_cube *cube)
 {
-		if (ray->side == 0)
+	(void)cube;
+	if (ray->door == 0)
+	{
+		if (ray->side == EAST || ray->side == WEST)
 			ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x;
 		else
 			ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y;
+	}
 }

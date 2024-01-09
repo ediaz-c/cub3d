@@ -1,6 +1,6 @@
 NAME		=	cub3D
 CC			=	gcc
-CFLAGS		=	-MMD -Wall -Werror -Wextra
+CFLAGS		=	-MMD -Wall -Werror -Wextra -fsanitize=address -Iincludes -Ilibs/libft -Ilibs/mlx
 RM			=	rm -rf
 
 #LIBS
@@ -38,7 +38,7 @@ ERROR_BONUS	=	put_error.c
 FREE_BONUS	=	free_str.c free_cube.c
 GAME_BONUS	=	game.c textures.c close.c loop.c handler_key.c player.c move.c rotate.c handler_mouse.c
 MINI_BONUS	=	minimap.c player_minimap.c
-RAY_BONUS	=	raycast.c raycasting_draw_line.c raycasting_operations_wall.c raycasting_operations_floor_ceiling.c raycasting_utils.c
+RAY_BONUS	=	raycast.c raycasting_draw_line.c raycasting_operations_wall.c raycasting_operations_floor_ceiling.c raycasting_utils.c ray_hit.c my_mlx.c
 UTILS_BONUS	=	create_cube.c check_map_utils.c check_row.c get_cub_utils.c pos.c
 MAIN_BONUS	=	main.c
 

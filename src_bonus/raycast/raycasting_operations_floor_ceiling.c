@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 14:32:53 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/12/08 17:34:58 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/09 20:25:28 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	ft_render_floor_and_ceiling(t_cube *cube, t_raysult *ray, t_player *p)
 	int		y;
 	int		floor_color;
 	int		ceiling_color;
+	int		*floor_buffer;
+	int		*ceiling_buffer;
 
 	y = -1;
 	while (++y < WIN_H)
@@ -59,14 +61,13 @@ void	ft_render_floor_and_ceiling(t_cube *cube, t_raysult *ray, t_player *p)
 		x = -1;
 		while (++x < WIN_W)
 		{
-			ray->cell.x = (int)(ray->floor.x);
-			ray->cell.y = (int)(ray->floor.y);
-			ray->tex.x = (int)(TEXTURE_WIDHT * (ray->floor.x - ray->cell.x)) & (TEXTURE_WIDHT - 1);
-			ray->tex.y = (int)(TEXTURE_HEIGHT * (ray->floor.y - ray->cell.y)) & (TEXTURE_HEIGHT - 1);
-			ray->floor.x += ray->floor_step.x;
-			ray->floor.y += ray->floor_step.y;
-			floor_color = cube->txt->floor.buffer[TEXTURE_WIDHT * ray->tex.y + ray->tex.x];
-			ceiling_color = cube->txt->ceiling.buffer[TEXTURE_WIDHT * ray->tex.y + ray->tex.x];
+			set_pos_int(&ray->cell, (int)ray->floor.x, (int)ray->floor.y);
+			set_pos_int(&ray->tex, (int)(TEXTURE_WIDHT * (ray->floor.x - ray->cell.x)) & (TEXTURE_WIDHT - 1), (int)(TEXTURE_HEIGHT * (ray->floor.y - ray->cell.y)) & (TEXTURE_HEIGHT - 1));
+			set_pos(&ray->floor, ray->floor.x + ray->floor_step.x, ray->floor.y + ray->floor_step.y);
+			floor_buffer = cube->txt->floor.buffer;
+			ceiling_buffer = cube->txt->ceiling.buffer;
+			floor_color = floor_buffer[TEXTURE_WIDHT * ray->tex.y + ray->tex.x];
+			ceiling_color = ceiling_buffer[TEXTURE_WIDHT * ray->tex.y + ray->tex.x];
 			my_img_pixel_put(&cube->img, x, y, ft_dark_color(ray, p, floor_color));
 			my_img_pixel_put(&cube->img, x, WIN_H - y - 1, ft_dark_color(ray, p, ceiling_color));
 		}
