@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 09:43:24 by erick             #+#    #+#             */
-/*   Updated: 2024/01/11 12:49:40 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:29:22 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,30 +43,10 @@ void	mid_x(t_cube *cube, t_raysult *ray, t_line *line, int x)
 {
 	if (x == WIN_W / 2)
 	{
-		if (ray->is_door)
+		if (ray->is_door == 1)
 			set_mid_hit(cube, ray, line);
 		else
 			set_pos(&cube->door_handler, -1, -1);
-	}
-}
-
-void	ft_add_background(t_cube *cube)
-{
-	int	x;
-	int	y;
-	int	*color;
-	t_img	*img;
-
-	y = -1;
-	img = &cube->txt->ceiling;
-	while (++y < img->height)
-	{
-		x = -1;
-		while (++x < img->width)
-		{
-			color = img->buffer + (y * img->size_line + x * (img->bpp / 8));
-			my_img_pixel_put(&cube->img, x, y, *color);
-		}
 	}
 }
 
@@ -81,7 +61,6 @@ void	raycasting(t_cube *cube)
 	player = cube->p;
 	mlx_clear_window(cube->mlx->mlx, cube->mlx->win);
 	set_pos(&cube->door_handler, -1, -1);
-	// ft_add_background(cube);
 	ft_render_floor_and_ceiling(cube, &ray, player);
 	while (++x < WIN_W)
 	{

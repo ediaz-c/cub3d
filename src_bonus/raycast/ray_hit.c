@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_hit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:34:48 by ediaz--c          #+#    #+#             */
-/*   Updated: 2024/01/10 00:39:05 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:02:24 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ int	ft_check_hit_door(t_cube *cube, t_raysult *ray)
 		}
 		return (0);
 	}
+	else if (cube->map[(int)ray->mpos.y][(int)ray->mpos.x] == 'd')
+		ray->is_door = 1;
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 15:28:09 by erick             #+#    #+#             */
-/*   Updated: 2024/01/10 00:31:29 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:50:52 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ int	ft_init_textures(t_cube *cube)
 		return (EXIT_FAILURE);
 	if (ft_create_img(&cube->txt->we, cube->ea, cube->mlx) == NULL)
 		return (EXIT_FAILURE);
-	if (ft_create_img(&cube->txt->door, "./textures/extra/door.xpm", cube->mlx) == NULL)
+	if (ft_create_img(&cube->txt->door, "./textures/extra/door_lab.xpm", cube->mlx) == NULL)
 		return (EXIT_FAILURE);
-	if (ft_create_img(&cube->txt->door_wall, "./textures/extra/door_wall.xpm", cube->mlx) == NULL)
+	if (ft_create_img(&cube->txt->door_wall, "./textures/extra/door_wall_lab.xpm", cube->mlx) == NULL)
 		return (EXIT_FAILURE);
-	if (ft_create_img(&cube->txt->ceiling, "./textures/extra/ceiling.xpm", cube->mlx) == NULL)
+	if (ft_create_img(&cube->txt->ceiling, "./textures/extra/ceiling_wood.xpm", cube->mlx) == NULL)
 		return (EXIT_FAILURE);
 	if (ft_create_img(&cube->txt->floor, "./textures/extra/floor.xpm", cube->mlx) == NULL)
 		return (EXIT_FAILURE);

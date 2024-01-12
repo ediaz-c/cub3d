@@ -74,10 +74,7 @@ char	ft_dda(t_cube *cube, t_raysult *ray)
 	{
 		ray->is_door = 0;
 		if (cube->map[(int)ray->mpos.y][(int)ray->mpos.x] == 'd')
-		{
-			set_pos(&cube->door_handler, ray->mpos.x, ray->mpos.y);
 			ray->is_door = 1;
-		}
 		if (ray->side_dist.x < ray->side_dist.y)
 		{
 			ray->side_dist.x += ray->delta_dist.x;
