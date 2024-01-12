@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 17:12:51 by erick             #+#    #+#             */
-/*   Updated: 2023/12/08 18:24:19 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/10 00:49:35 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,25 @@ void	ft_add_extra_info(t_cube *cube)
 	t_img	*img;
 	int		x;
 	int		y;
+	int		center_h;
+	int		center_w;
 
 	img = &cube->img;
-	y = WIN_H / 2 - 7;
-	while (y <= (WIN_H / 2) + 7)
+	center_h = WIN_H / 2;
+	center_w = WIN_W / 2;
+	y = center_h - 7;
+	while (y <= center_h + 7)
 	{
-		x = WIN_W / 2 - 1;
-		while (x <= (WIN_W / 2) + 1)
+		x = center_w - 1;
+		while (x <= center_w + 1)
 			my_img_pixel_put(img, x++, y, 0x00FFFFFF);
 		y++;
 	}
-	x = WIN_W / 2 - 7;
-	while (x <= (WIN_W / 2) + 7)
+	x = center_w - 7;
+	while (x <= center_w + 7)
 	{
-		y = WIN_H / 2 - 1;
-		while (y <= (WIN_H / 2) + 1)
+		y = center_h - 1;
+		while (y <= center_h + 1)
 			my_img_pixel_put(img, x, y++, 0x00FFFFFF);
 		x++;
 	}

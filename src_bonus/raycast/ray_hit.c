@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:34:48 by ediaz--c          #+#    #+#             */
-/*   Updated: 2024/01/10 00:14:33 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/10 00:39:05 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,6 @@ int	ft_check_hit_door(t_cube *cube, t_raysult *ray)
 				ray->door = 1;
 			}
 		}
-		if (ray->side == 0)
-			ray->perp_wall_dist = fabs((ray->mpos.x - cube->p->pos.x + (1 - ray->step.x) - 0.5) / ray->ray_dir.x);
-		else
-			ray->perp_wall_dist = fabs((ray->mpos.y - cube->p->pos.y + (1 - ray->step.y) - 0.5) / ray->ray_dir.y);
 		return (0);
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 15:28:09 by erick             #+#    #+#             */
-/*   Updated: 2023/12/08 14:04:08 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/10 00:31:29 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,27 @@ t_img	*ft_create_img(t_img *img, char *path, t_mlx *mlx)
 	return (img);
 }
 
+t_img	*ft_create_img_color(t_img *img, t_mlx *mlx, int color)
+{
+	int	x;
+	int	y;
+
+	img->img = mlx_new_image(mlx->mlx, WIN_W, WIN_W);
+	if (img->img == NULL)
+		return (NULL);
+	img->buffer = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_line, &img->endian);
+	if (img->buffer == NULL)
+		return (NULL);
+	y = -1;
+	while (++y < WIN_H)
+	{
+		x = -1;
+		while (++x < WIN_W)
+			img->buffer[y * WIN_W + x] = color;
+	}
+	return (img);
+}
+
 int	ft_init_textures(t_cube *cube)
 {
 	cube->txt = malloc(sizeof(t_texture));
@@ -56,7 +77,7 @@ int	ft_init_textures(t_cube *cube)
 		return (EXIT_FAILURE);
 	if (ft_create_img(&cube->txt->floor, "./textures/extra/floor.xpm", cube->mlx) == NULL)
 		return (EXIT_FAILURE);
-	if (ft_get_img_cube(cube) == NULL)
+	if (ft_create_img_color(&cube->img, cube->mlx, BG_COLOR) == NULL)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

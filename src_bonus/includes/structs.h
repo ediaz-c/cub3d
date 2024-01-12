@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:16:49 by ediaz--c          #+#    #+#             */
-/*   Updated: 2024/01/09 14:42:01 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/11 12:26:26 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define STRUCTS_H
 # define CHARS_MAP	" 01NSEWDO"
 # define CHARS_P	"NSEW"
-# define WIN_H		750
-# define WIN_W		1200
+# define WIN_H		720
+# define WIN_W		1280
 # define FOV		60
 # define NORTH		1
 # define SOUTH		1
@@ -29,6 +29,7 @@
 # define SIZE_WALL 24
 # define TEXTURE_WIDHT 64
 # define TEXTURE_HEIGHT 64
+# define BG_COLOR 0x0025FF00
 
 typedef struct s_pos
 {
@@ -174,6 +175,7 @@ typedef struct	s_raysult
 	t_pos		step;
 	double		wall_x;
 	struct s_line	*line;
+	t_img		*texture;
 }				t_raysult;
 
 typedef struct	s_texture

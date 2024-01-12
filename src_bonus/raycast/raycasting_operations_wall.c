@@ -101,12 +101,18 @@ char	ft_dda(t_cube *cube, t_raysult *ray)
 
 void	ft_calculate_wall_dist(t_raysult *ray, t_cube *cube)
 {
-	(void)cube;
 	if (ray->door == 0)
 	{
 		if (ray->side == EAST || ray->side == WEST)
 			ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x;
 		else
 			ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y;
+	}
+	else
+	{
+		if (ray->side == 0)
+			ray->perp_wall_dist = fabs((ray->mpos.x - cube->p->pos.x + (1 - ray->step.x) - 0.5) / ray->ray_dir.x);
+		else
+			ray->perp_wall_dist = fabs((ray->mpos.y - cube->p->pos.y + (1 - ray->step.y) - 0.5) / ray->ray_dir.y);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:59:10 by ediaz--c          #+#    #+#             */
-/*   Updated: 2024/01/09 20:26:55 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/10 00:44:00 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ t_img	*ft_get_orientation(t_line *line, t_cube *cube, t_raysult *ray)
 void	ft_calculate_texture_x(t_cube *cube, t_line *line, t_raysult *ray)
 {
     t_player	*p;
-    t_img		*texture;
 
     p = cube->p;
     if (ray->side == 0)
@@ -55,23 +54,21 @@ void	ft_calculate_texture_x(t_cube *cube, t_line *line, t_raysult *ray)
     else
         ray->wall_x = p->pos.x + ray->perp_wall_dist * ray->ray_dir.x;
     ray->wall_x -= floor(ray->wall_x);
-    texture = ft_get_orientation(line, cube, ray);
-    line->tex_x = (int)(ray->wall_x * (double)texture->width);
+    ray->texture = ft_get_orientation(line, cube, ray);
+    line->tex_x = (int)(ray->wall_x * (double)ray->texture->width);
     if (ray->side == 0 && ray->ray_dir.x > 0)
-        line->tex_x = texture->width - line->tex_x - 1;
+        line->tex_x = ray->texture->width - line->tex_x - 1;
     if (ray->side == 1 && ray->ray_dir.y < 0)
-        line->tex_x = texture->width - line->tex_x - 1;
+        line->tex_x = ray->texture->width - line->tex_x - 1;
 }
 
 void	ft_draw_wall(t_cube *cube, t_raysult *ray, double *step, double *tex_pos)
 {
-	t_img	*texture;
 	int		color;
 
-	texture = ft_get_orientation(ray->line, cube, ray);
-	ray->line->tex_y = (int)(*tex_pos) & (texture->height - 1);
+	ray->line->tex_y = (int)(*tex_pos) & (ray->texture->height - 1);
 	(*tex_pos) += (*step);
-	color = texture->buffer[texture->height * ray->line->tex_y + ray->line->tex_x];
+	color = ray->texture->buffer[ray->texture->height * ray->line->tex_y + ray->line->tex_x];
 	color = ft_dark_color_wall(ray, color);
 	my_img_pixel_put(&cube->img, ray->curent_col, ray->current_row, color);
 }
@@ -81,10 +78,8 @@ void	ft_paint_pixels(t_cube *cube, t_line *line, t_raysult *ray, int x)
     double	step;
     double	tex_pos;
     int		y;
-    t_img	*texture;
 
-    texture = ft_get_orientation(line, cube, ray);
-    step = 1.0 * texture->height / line->line_height;
+    step = 1.0 * ray->texture->height / line->line_height;
     tex_pos = (line->draw_start - WIN_H / 2 + line->line_height / 2) * step;
 	y = line->draw_start;
     ray->line = line;
