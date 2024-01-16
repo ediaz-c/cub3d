@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 19:00:23 by erick             #+#    #+#             */
-/*   Updated: 2024/01/12 13:04:06 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/14 21:15:30 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	init_game(t_cube *cube)
 
 void	game(t_cube *cube)
 {
-	t_mlx	*mlx;
+	t_mlx		*mlx;
 
 	init_game(cube);
 	mlx = cube->mlx;

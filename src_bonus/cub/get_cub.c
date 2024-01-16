@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:28:30 by erick             #+#    #+#             */
-/*   Updated: 2024/01/09 14:40:41 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:44:48 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	ft_get_file(t_cube *cube)
 	fd = open(cube->path, O_RDONLY);
 	if (fd < 0)
 		exit(ft_exiterror(BRED"Path invalid"COLOR_OFF));
-	
 	cube->file = ft_fd_map(cube->path, fd);
 	if (cube->file == NULL)
 		return (close(fd), 0);
@@ -103,6 +102,7 @@ void	ft_get_cube(t_cube *cube)
 	ft_change_chars(cube->map, cube->p);
 	ft_size_map(cube);
 	ft_init_player(cube);
-	cube->run = 1;
+	cube->run = REFRESH;
+	cube->mouse_listen = 0;
 	set_pos(&cube->door_handler, 0, 0);
 }

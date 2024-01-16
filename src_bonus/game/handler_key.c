@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:19:35 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/12/06 14:10:37 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:51:45 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,8 @@ int	ft_keypress(int keycode, t_cube *cube)
 		ft_handler_rotate(keycode, cube);
 	else if (keycode == KEY_SHIFT)
 		cube->p->move_speed = 0.3;
-	else if (keycode == KEY_Q)
-	{
-		mlx_mouse_show();
-		cube->mouse_listen = 0;
-	}
+	else if (keycode == KEY_E)
+		ft_state_door(cube);
 	return (1);
 }
 
@@ -48,7 +45,7 @@ void	ft_handler_move(int keycode, t_cube *cube)
 		ft_move_right(cube, cube->p, cube->map);
 	else if (keycode == KEY_D)
 		ft_move_left(cube, cube->p, cube->map);
-	cube->run = 1;
+	cube->run = REFRESH;
 }
 
 void	ft_handler_rotate(int keycode, t_cube *cube)
@@ -57,5 +54,5 @@ void	ft_handler_rotate(int keycode, t_cube *cube)
 		ft_rotate_left(cube, cube->p->rot_speed);
 	else if (keycode == KEY_RIGHT)
 		ft_rotate_right(cube, cube->p->rot_speed);
-	cube->run = 1;
+	cube->run = REFRESH;
 }

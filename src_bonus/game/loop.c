@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 17:12:51 by erick             #+#    #+#             */
-/*   Updated: 2024/01/10 00:49:35 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/15 12:32:35 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,15 @@ void	ft_add_extra_info(t_cube *cube)
 
 int	render(t_cube *cube)
 {
-	if (cube->run == 1)
+	// static int timer;
+	// printf("%d\n", timer++);
+	// timer++;
+	if (cube->run == REFRESH)
 	{
 		raycasting(cube);
 		ft_add_extra_info(cube);
-		mlx_put_image_to_window(cube->mlx->mlx, cube->mlx->win, cube->img.img, 0, 0);
+		mlx_put_image_to_window(cube->mlx->mlx, cube->mlx->win,
+			cube->img.img, 0, 0);
 		ft_put_minimap(cube);
 		cube->run = -(cube->run);
 	}

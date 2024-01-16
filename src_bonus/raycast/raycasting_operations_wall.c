@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting_operations_wall.c                            :+:      :+:    :+:   */
+/*   raycasting_operations_wall.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:25:34 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/12/08 14:20:30 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:46:40 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_calculate_step(t_raysult *ray, t_player *p)
 	}
 }
 
-char		get_wall_tex(t_raysult *ray)
+char	get_wall_tex(t_raysult *ray)
 {
 	char	wall_tex;
 
@@ -66,10 +66,8 @@ char		get_wall_tex(t_raysult *ray)
 	return (wall_tex);
 }
 
-char	ft_dda(t_cube *cube, t_raysult *ray)
+void	ft_dda(t_cube *cube, t_raysult *ray, t_line *line)
 {
-	char	wall;
-
 	while (ray->hit == 0)
 	{
 		ray->is_door = 0;
@@ -87,13 +85,12 @@ char	ft_dda(t_cube *cube, t_raysult *ray)
 			ray->mpos.y += ray->step.y;
 			ray->side = 1;
 		}
-		wall = get_wall_tex(ray);
+		line->wall_tex = get_wall_tex(ray);
 		if (ft_check_hit_door(cube, ray) == 0)
-			return (wall);
+			return ;
 		if (ft_check_hit_wall(cube, ray) == 0)
 			ray->hit = 1;
 	}
-	return (wall);
 }
 
 void	ft_calculate_wall_dist(t_raysult *ray, t_cube *cube)
@@ -108,8 +105,10 @@ void	ft_calculate_wall_dist(t_raysult *ray, t_cube *cube)
 	else
 	{
 		if (ray->side == 0)
-			ray->perp_wall_dist = fabs((ray->mpos.x - cube->p->pos.x + (1 - ray->step.x) - 0.5) / ray->ray_dir.x);
+			ray->perp_wall_dist = fabs((ray->mpos.x - cube->p->pos.x
+						+ (1 - ray->step.x) - 0.5) / ray->ray_dir.x);
 		else
-			ray->perp_wall_dist = fabs((ray->mpos.y - cube->p->pos.y + (1 - ray->step.y) - 0.5) / ray->ray_dir.y);
+			ray->perp_wall_dist = fabs((ray->mpos.y - cube->p->pos.y
+						+ (1 - ray->step.y) - 0.5) / ray->ray_dir.y);
 	}
 }

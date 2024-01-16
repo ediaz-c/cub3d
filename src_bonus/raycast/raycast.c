@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 09:43:24 by erick             #+#    #+#             */
-/*   Updated: 2024/01/12 13:29:22 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/14 21:06:49 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	raycasting(t_cube *cube)
 	while (++x < WIN_W)
 	{
 		ft_first_op(player, &ray, x);
-		line.wall_tex = ft_dda(cube, &ray);
+		ft_dda(cube, &ray, &line);
 		ft_calculate_wall_dist(&ray, cube);
 		ft_caltulate_line(&line, &ray);
 		ft_calculate_texture_x(cube, &line, &ray);

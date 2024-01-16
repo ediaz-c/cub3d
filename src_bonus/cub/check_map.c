@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 17:33:17 by erick             #+#    #+#             */
-/*   Updated: 2023/12/08 16:37:10 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/14 15:04:35 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	ft_fill_map(char **map)
 {
 	int	i;
 	int	max_len;
-	
+
 	i = -1;
 	max_len = 0;
 	while (map[++i])

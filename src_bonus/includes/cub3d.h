@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#ifndef CUB3D_H
+# define CUB3D_H
 # include "../../libs/libft/includes/libft.h"
 # include "../../libs/mlx/mlx.h"
 # include "color.h"
@@ -81,7 +81,7 @@ void		cpy_pos_int(t_pos_int *pos1, t_pos_int *pos2);
 /* raycasting_operations_wall.c */
 void		ft_calculate_ray_and_dist(t_raysult *ray, t_player *p, int x);
 void		ft_calculate_step(t_raysult *ray, t_player *p);
-char		ft_dda(t_cube *cube, t_raysult *ray);
+void		ft_dda(t_cube *cube, t_raysult *ray, t_line *line);
 void		ft_calculate_wall_dist(t_raysult *ray, t_cube *cube);
 /* raycasting_draw_line.c */
 void		ft_caltulate_line(t_line *line, t_raysult *ray);
@@ -91,7 +91,7 @@ void		ft_paint_pixels(t_cube *cube, t_line *line, t_raysult *ray, int x);
 int			ft_check_hit_wall(t_cube *cube, t_raysult *ray);
 int			ft_check_hit_door(t_cube *cube, t_raysult *ray);
 /* my_mlx.c*/
-void	my_img_pixel_put(t_img *img, int x, int y, int color);
+void		my_img_pixel_put(t_img *img, int x, int y, int color);
 /***** GAME*****/
 /* game.c */
 void		game(t_cube *cube);
@@ -107,7 +107,8 @@ int			render(t_cube *cube);
 /* raycasting.c */
 void		raycasting(t_cube *cube);
 void		my_img_pixel_put(t_img *img, int x, int y, int color);
-void		ft_render_floor_and_ceiling(t_cube *cube, t_raysult *ray, t_player *p);
+void		ft_render_floor_and_ceiling(t_cube *cube,
+				t_raysult *ray, t_player *p);
 int			ft_dark_color_wall(t_raysult *ray, int color);
 void		ft_check_is_door(t_cube *cube, t_raysult *ray);
 /* player.c */
@@ -133,6 +134,8 @@ void		ft_rotate_right(t_cube *cube, double rot_speed);
 int			ft_mouse(int button, int x, int y, t_cube *cube);
 void		mouse_listening(t_cube *cube);
 
+/* door.c */
+void		ft_state_door(t_cube *cube);
 /***** MINIMAP *****/
 /* minimap.c */
 t_minimap	*ft_init_minimap(t_cube *cube, t_minimap **mini);
@@ -148,5 +151,5 @@ void		add_mini_player(t_cube *cube, t_minimap *mini);
 *	- If the number of arguments is different than 2 exit with error
 *	- If the extension is different than .cub exit with error
 */
-void	ft_check_args(int ac, char *av[], t_cube **cube);
+void		ft_check_args(int ac, char *av[], t_cube **cube);
 #endif

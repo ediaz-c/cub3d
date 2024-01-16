@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 15:28:09 by erick             #+#    #+#             */
-/*   Updated: 2024/01/12 13:50:52 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/14 19:00:53 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_img	*ft_get_img_cube(t_cube *cube)
 	if (cube->img.img == NULL)
 		return (NULL);
 	cube->img.buffer = (int *)mlx_get_data_addr(cube->img.img,
-		&cube->img.bpp, &cube->img.size_line, &cube->img.endian);
+			&cube->img.bpp, &cube->img.size_line, &cube->img.endian);
 	if (cube->img.buffer == NULL)
 		return (NULL);
 	return (&cube->img);
@@ -29,7 +29,8 @@ t_img	*ft_create_img(t_img *img, char *path, t_mlx *mlx)
 	img->img = mlx_xpm_file_to_image(mlx->mlx, path, &img->width, &img->height);
 	if (img->img == NULL)
 		return (NULL);
-	img->buffer = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_line, &img->endian);
+	img->buffer = (int *)mlx_get_data_addr(img->img, &img->bpp,
+			&img->size_line, &img->endian);
 	if (img->buffer == NULL)
 		return (NULL);
 	return (img);
@@ -43,7 +44,8 @@ t_img	*ft_create_img_color(t_img *img, t_mlx *mlx, int color)
 	img->img = mlx_new_image(mlx->mlx, WIN_W, WIN_W);
 	if (img->img == NULL)
 		return (NULL);
-	img->buffer = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_line, &img->endian);
+	img->buffer = (int *)mlx_get_data_addr(img->img, &img->bpp,
+			&img->size_line, &img->endian);
 	if (img->buffer == NULL)
 		return (NULL);
 	y = -1;
@@ -56,6 +58,20 @@ t_img	*ft_create_img_color(t_img *img, t_mlx *mlx, int color)
 	return (img);
 }
 
+char	*asset(int asset)
+{
+	if (asset == CEILING)
+		return ("./textures/extra/ceiling_wood.xpm");
+	else if (asset == FLOOR)
+		return ("./textures/extra/floor.xpm");
+	else if (asset == DOOR)
+		return ("./textures/extra/door_lab.xpm");
+	else if (asset == DOOR_WALL)
+		return ("./textures/extra/door_wall_lab.xpm");
+	return (NULL);
+}
+
+/* TODO  TOO LONG*/
 int	ft_init_textures(t_cube *cube)
 {
 	cube->txt = malloc(sizeof(t_texture));
@@ -69,13 +85,14 @@ int	ft_init_textures(t_cube *cube)
 		return (EXIT_FAILURE);
 	if (ft_create_img(&cube->txt->we, cube->ea, cube->mlx) == NULL)
 		return (EXIT_FAILURE);
-	if (ft_create_img(&cube->txt->door, "./textures/extra/door_lab.xpm", cube->mlx) == NULL)
+	if (ft_create_img(&cube->txt->door, asset(DOOR), cube->mlx) == NULL)
 		return (EXIT_FAILURE);
-	if (ft_create_img(&cube->txt->door_wall, "./textures/extra/door_wall_lab.xpm", cube->mlx) == NULL)
+	if (ft_create_img(&cube->txt->door_wall,
+			asset(DOOR_WALL), cube->mlx) == NULL)
 		return (EXIT_FAILURE);
-	if (ft_create_img(&cube->txt->ceiling, "./textures/extra/ceiling_wood.xpm", cube->mlx) == NULL)
+	if (ft_create_img(&cube->txt->ceiling, asset(CEILING), cube->mlx) == NULL)
 		return (EXIT_FAILURE);
-	if (ft_create_img(&cube->txt->floor, "./textures/extra/floor.xpm", cube->mlx) == NULL)
+	if (ft_create_img(&cube->txt->floor, asset(FLOOR), cube->mlx) == NULL)
 		return (EXIT_FAILURE);
 	if (ft_create_img_color(&cube->img, cube->mlx, BG_COLOR) == NULL)
 		return (EXIT_FAILURE);

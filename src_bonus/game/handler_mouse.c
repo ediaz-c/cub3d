@@ -3,34 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   handler_mouse.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 18:32:48 by ediaz--c          #+#    #+#             */
-/*   Updated: 2024/01/12 13:17:53 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:57:53 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int ft_mouse(int button, int x, int y, t_cube *cube)
+int	ft_mouse(int button, int x, int y, t_cube *cube)
 {
-	mlx_mouse_hide();
-	cube->mouse_listen = 1;
-	mlx_mouse_move(cube->mlx->win, WIN_W / 2, WIN_H / 2);
 	(void)x;
 	(void)y;
-	if (button == 2 && cube->map[(int)cube->p->pos.y][(int)cube->p->pos.x] != 'd')
+	if (button == 2)
 	{
-		if (cube->door_handler.x != -1 && cube->door_handler.y != -1 && cube->map[(int)cube->door_handler.y][(int)cube->door_handler.x] == 'D')
+		if (cube->mouse_listen == 1)
+			mlx_mouse_show();
+		else
 		{
-			cube->map[(int)cube->door_handler.y][(int)cube->door_handler.x] = 'd';
-			cube->run = 1;
+			mlx_mouse_hide();
+			mlx_mouse_move(cube->mlx->win, WIN_W / 2, WIN_H / 2);
 		}
-		else if (cube->door_handler.x != -1 && cube->door_handler.y != -1 && cube->map[(int)cube->door_handler.y][(int)cube->door_handler.x] == 'd')
-		{
-			cube->map[(int)cube->door_handler.y][(int)cube->door_handler.x] = 'D';
-			cube->run = 1;
-		}
+		cube->mouse_listen = !cube->mouse_listen;
 	}
 	return (1);
 }
@@ -57,5 +52,5 @@ void	mouse_listening(t_cube *cube)
 	else if (x < WIN_W / 2)
 		ft_rotate_left(cube, rot_speed * distance);
 	mlx_mouse_move(mlx->win, WIN_W / 2, WIN_H / 2);
-	cube->run = 1;
+	cube->run = REFRESH;
 }

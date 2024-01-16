@@ -1,6 +1,6 @@
 NAME		=	cub3D
 CC			=	gcc
-CFLAGS		=	-MMD -Wall -Werror -Wextra -fsanitize=address -Iincludes -Ilibs/libft -Ilibs/mlx
+CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address -Iincludes -Ilibs/libft -Ilibs/mlx
 RM			=	rm -rf
 
 #LIBS
@@ -36,7 +36,7 @@ DEPS		=	$(OBJS:.o=.d)
 CUB_BONUS	=	check_argument.c get_cub.c check_map.c map_utils.c
 ERROR_BONUS	=	put_error.c
 FREE_BONUS	=	free_str.c free_cube.c
-GAME_BONUS	=	game.c textures.c close.c loop.c handler_key.c player.c move.c rotate.c handler_mouse.c
+GAME_BONUS	=	game.c textures.c close.c loop.c handler_key.c player.c move.c rotate.c handler_mouse.c door.c
 MINI_BONUS	=	minimap.c player_minimap.c
 RAY_BONUS	=	raycast.c raycasting_draw_line.c raycasting_operations_wall.c raycasting_operations_floor_ceiling.c raycasting_utils.c ray_hit.c my_mlx.c
 UTILS_BONUS	=	create_cube.c check_map_utils.c check_row.c get_cub_utils.c pos.c
@@ -74,12 +74,16 @@ all:	$(NAME)
 $(NAME):	$(OBJS)
 	@clear
 	@echo "$(GREEN)$(BLINK)	Compiling...$(OFF)"
+	@printf "$(PURPLE) MLX		$(RED)Compilando...$(OFF)\n"
+	@printf "$(PURPLE) LIBFT		$(RED)Compilando...$(OFF)\n"
+	@printf "$(PURPLE) $(NAME)		$(RED)Compilando...$(OFF)\n"
 	@make -C $(MLX_PATH)
-	@echo "$(PURPLE) MLX		$(GREEN)Compilado$(OFF)"
+	@echo "\033[0;0H"
+	@printf "\033[2K$(PURPLE) MLX		$(GREEN)Compilado$(OFF)\n"
 	@make -C $(LIBFT_PATH)
-	@echo "$(PURPLE) LIBFT		$(GREEN)Compilado$(OFF)"
+	@printf "\033[2K$(PURPLE) LIBFT		$(GREEN)Compilado$(OFF)\n"
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT) $(MLX)
-	@echo "$(PURPLE) $(NAME)		$(GREEN)Compilado$(OFF)"
+	@printf "\033[2K$(PURPLE) $(NAME)		$(GREEN)Compilado$(OFF)\n"
 	@echo "\n"
 	@echo	"$(PURPLE)$(BLINK)  ██████╗██╗   ██╗██████╗ ██████╗ ██████╗\n" \
 							"██╔════╝██║   ██║██╔══██╗╚════██╗██╔══██╗\n"\
@@ -116,12 +120,16 @@ re: fclean all
 bonus: $(OBJS_BONUS)
 	@clear
 	@echo "$(GREEN)$(BLINK)	Compiling...$(OFF)"
+	@printf "$(PURPLE) MLX		$(RED)Compilando...$(OFF)\n"
+	@printf "$(PURPLE) LIBFT		$(RED)Compilando...$(OFF)\n"
+	@printf "$(PURPLE) $(NAME) $(YELLOW)bonus	$(RED)Compilando...$(OFF)\n"
 	@make -C $(MLX_PATH)
-	@echo "$(PURPLE) MLX		$(GREEN)Compilado$(OFF)"
+	@echo "\033[0;0H"
+	@printf "\033[2K$(PURPLE) MLX		$(GREEN)Compilado$(OFF)\n"
 	@make -C $(LIBFT_PATH)
-	@echo "$(PURPLE) LIBFT		$(GREEN)Compilado$(OFF)"
+	@printf "\033[2K$(PURPLE) LIBFT		$(GREEN)Compilado$(OFF)\n"
 	@$(CC) $(CFLAGS) $(OBJS_BONUS) -o $(NAME) $(LIBFT) $(MLX)
-	@echo "$(PURPLE) $(NAME) $(YELLOW)bonus	$(GREEN)Compilado$(OFF)"
+	@printf "\033[2K$(PURPLE) $(NAME) $(YELLOW)bonus	$(GREEN)Compilado$(OFF)\n"
 	@echo "\n"
 	@echo "$(PURPLE)$(BLINK)  ██████╗██╗   ██╗██████╗ ██████╗ ██████╗     ██████╗  ██████╗ ███╗   ██╗██╗   ██╗███████╗\n"\
 							"██╔════╝██║   ██║██╔══██╗╚════██╗██╔══██╗    ██╔══██╗██╔═══██╗████╗  ██║██║   ██║██╔════╝\n"\

@@ -6,15 +6,13 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 11:39:59 by ediaz--c          #+#    #+#             */
-/*   Updated: 2023/12/08 17:59:45 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/14 18:02:17 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-
-
-void draw_circle(t_minimap *mini, int x, int y)
+void	draw_circle(t_minimap *mini, int x, int y)
 {
 	int	xc;
 	int	yc;
@@ -22,23 +20,27 @@ void draw_circle(t_minimap *mini, int x, int y)
 
 	xc = SIZE_MINI / 2;
 	yc = SIZE_MINI / 2;
-	for (i = -x; i <= x; i++)
+	i = -x;
+	while (i <= x)
 	{
-		mini->buffer[(xc+i) * SIZE_MINI + (yc+y)] = 0x00FF0000;
-		mini->buffer[(xc+i) * SIZE_MINI + (yc-y)] = 0x00FF0000;
+		mini->buffer[(xc + i) * SIZE_MINI + (yc + y)] = 0x00FF0000;
+		mini->buffer[(xc + i) * SIZE_MINI + (yc - y)] = 0x00FF0000;
+		i++;
 	}
-	for (i = -y; i <= y; i++)
+	i = -y;
+	while (i <= y)
 	{
-		mini->buffer[(xc+i) * SIZE_MINI + (yc+x)] = 0x00FF0000;
-		mini->buffer[(xc+i) * SIZE_MINI + (yc-x)] = 0x00FF0000;
+		mini->buffer[(xc + x) * SIZE_MINI + (yc + i)] = 0x00FF0000;
+		mini->buffer[(xc - x) * SIZE_MINI + (yc + i)] = 0x00FF0000;
+		i++;
 	}
 }
 
-void draw_player(t_minimap *mini, int radius)
+void	draw_player(t_minimap *mini, int radius)
 {
-	int x;
-	int y;
-	int d;
+	int	x;
+	int	y;
+	int	d;
 
 	x = 0;
 	y = radius;

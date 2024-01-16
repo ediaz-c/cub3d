@@ -6,7 +6,7 @@
 /*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:09:24 by erick             #+#    #+#             */
-/*   Updated: 2024/01/09 14:36:55 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/14 18:02:33 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,29 +57,28 @@ void	add_mini_walls(t_cube *cube, t_minimap *mini)
 {
 	t_mini_walls	walls;
 
-	walls.start_x = cube->p->pos.x * 24 - 100;
-	walls.start_y = cube->p->pos.y * 24 - 100;
-	walls.i = 0;
-	while (walls.i < SIZE_MINI)
+	walls.buffer = mini->buffer;
+	set_pos(&walls.start, cube->p->pos.x * 24 - 100, cube->p->pos.y * 24 - 100);
+	walls.iter.y = -1;
+	while (++walls.iter.y < SIZE_MINI)
 	{
-		walls.j = 0;
-		while (walls.j < SIZE_MINI)
+		walls.iter.x = -1;
+		while (++walls.iter.x < SIZE_MINI)
 		{
-			walls.map_x = (int)((walls.start_x + walls.j) / 24);
-			walls.map_y = (int)((walls.start_y + walls.i) / 24);
-			if (walls.map_x >= 0 && walls.map_x < cube->data_map.w
-				&& walls.map_y >= 0 && walls.map_y < cube->data_map.h)
+			set_pos_int(&walls.map, (int)((walls.start.x + walls.iter.x) / 24),
+				(int)((walls.start.y + walls.iter.y) / 24));
+			if (walls.map.x >= 0 && walls.map.x < cube->data_map.w
+				&& walls.map.y >= 0 && walls.map.y < cube->data_map.h)
 			{
-				if (cube->map[walls.map_y][walls.map_x] == '1')
-					mini->buffer[(int)walls.i
-						* SIZE_MINI + (int)walls.j] = 0x00000000;
-				else if (cube->map[walls.map_y][walls.map_x] == 'D')
-					mini->buffer[(int)walls.i
-						* SIZE_MINI + (int)walls.j] = 0x00FFD700;
+				walls.pos = (int)walls.iter.y * SIZE_MINI + (int)walls.iter.x;
+				if (cube->map[walls.map.y][walls.map.x] == '1')
+					walls.buffer[walls.pos] = 0x00000000;
+				else if (cube->map[walls.map.y][walls.map.x] == 'D')
+					walls.buffer[walls.pos] = 0x00FFD700;
+				else if (cube->map[walls.map.y][walls.map.x] == 'd')
+					walls.buffer[walls.pos] = 0x00FFD790;
 			}
-			walls.j++;
 		}
-		walls.i++;
 	}
 }
 
