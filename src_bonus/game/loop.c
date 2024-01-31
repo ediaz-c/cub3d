@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 17:12:51 by erick             #+#    #+#             */
-/*   Updated: 2024/01/15 12:32:35 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/01/31 12:43:34 by ediaz--c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,6 @@ void	ft_add_extra_info(t_cube *cube)
 
 int	render(t_cube *cube)
 {
-	// static int timer;
-	// printf("%d\n", timer++);
-	// timer++;
 	if (cube->run == REFRESH)
 	{
 		raycasting(cube);
