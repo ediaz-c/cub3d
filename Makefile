@@ -3,6 +3,8 @@ CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address -Iincludes -Ilibs/libft -Ilibs/mlx
 RM			=	rm -rf
 
+PATH_SRC =	$(shell find . -name "*.c" -not -path "./libs/*")
+
 #LIBS
 LIBFT_PATH	=	libs/libft
 MLX_PATH	=	libs/mlx
@@ -157,5 +159,25 @@ fclean_bonus: clean_bonus
 	@make fclean -C libs/libft
 	@echo "$(PURPLE) Mlx		$(RED)Deleted$(OFF)"
 	@make clean -C libs/mlx
+
+norm:
+	@echo "$(BLINK)$(RED)Norminette...$(OFF)"
+	@max_len=0; \
+	for file in $(PATH_SRC); do \
+		len=$$(echo "$$file" | wc -c); \
+		if [ $$len -gt $$max_len ]; then \
+			max_len=$$len; \
+		fi; \
+	done; \
+	for file in $(PATH_SRC); do \
+		result=`norminette $$file`; \
+		if echo "$$result" | grep -q "OK!"; then \
+			printf "$(PURPLE) $$file$(GREEN)%*s$(OFF)\n" $$((max_len - `echo "$$file" | wc -c` + 5)) "OK!"; \
+		else \
+			printf "$(PURPLE) $$file$(RED)%*s$(OFF)\n" $$((max_len - `echo "$$file" | wc -c` + 5)) "KO!"; \
+			result=$$(echo "$$result" | tail -n +2); \
+			printf "%5s$(RED)->%2s$(WHITE) $$result\n"; \
+		fi; \
+	done
 
 .PHONY:	all clean fclean re
