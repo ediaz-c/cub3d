@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_minimap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ediaz--c <ediaz--c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ipanos-o <ipanos-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 11:39:59 by ediaz--c          #+#    #+#             */
-/*   Updated: 2024/01/14 18:02:17 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/02/21 10:49:33 by ipanos-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void	add_mini_player(t_cube *cube, t_minimap *mini)
 
 	scale = 3;
 	line_length = 20;
+	ft_draw_fov(cube, mini);
 	draw_player(mini, scale);
 	calculate_end_points(cube, line_length, &params);
 	draw_line(mini, &params, line_length);

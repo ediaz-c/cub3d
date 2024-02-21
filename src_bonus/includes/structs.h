@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ediaz--c <ediaz--c@student.42madrid>       +#+  +:+       +#+        */
+/*   By: ipanos-o <ipanos-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:16:49 by ediaz--c          #+#    #+#             */
-/*   Updated: 2024/01/31 12:37:24 by ediaz--c         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:09:47 by ipanos-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@
 # define FLOOR 1
 # define DOOR_WALL 2
 # define DOOR 3
+
+# define FOV_COLOR	0x002DAD27
 
 typedef struct s_pos
 {

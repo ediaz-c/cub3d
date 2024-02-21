@@ -141,6 +141,7 @@ void		ft_state_door(t_cube *cube);
 t_minimap	*ft_init_minimap(t_cube *cube, t_minimap **mini);
 void		add_mini_walls(t_cube *cube, t_minimap *mini);
 void		clean_minimap(t_minimap *mini);
+void		ft_draw_fov(t_cube *cube, t_minimap *mini);
 
 /* player_minimap.c */
 void		add_mini_player(t_cube *cube, t_minimap *mini);
